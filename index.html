@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dove Love Charity Organization</title>
+ <link rel="icon" href="favicon.jpg" type="image/jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      background-color: #ffffff;
+      color: #2c2c2c;
+       -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+    }
+
+    header {
+  width: 100%;
+  background: transparent;
+  padding:  20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute; /* Change from relative to absolute */
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+header .logo img {
+  height: 120px; /* Increased from 50px */
+  object-fit: contain;
+}
+
+    header .menu {
+      font-size: 2rem;
+      cursor: pointer;
+      color: white;
+      z-index: 1001;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 70px;
+      right: 40px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
+    .dropdown a {
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #2c7a7b;
+      border-bottom: 1px solid #eee;
+    }
+
+    .dropdown a:hover {
+      background: #f0f9f8;
+    }
+
+    .hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding-top: 140px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 1s ease-in-out;
+}
+
+.hero-content {
+  z-index: 2;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0px;
+      font-weight: 600;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 600px;
+      font-weight: 300px;
+      margin: auto;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: left;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      color: #2c7a7b;
+      margin-bottom: 20px;
+      font-weight: 500;
+      text-align: left;
+      margin: 0 auto;
+      max-width: 1050px;
+    }
+
+    section p {
+      max-width: 1050px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      font-weight: 300px;
+      color: #444;
+    }
+    
+#gallery {
+  padding: 2rem;
+  background-color: #f5f5f5;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#gallery h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.gallery-note {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+}
+.collage-gallery {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.collage-img {
+  position: absolute;
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.collage-img:hover {
+  transform: scale(1.1);
+}
+
+/* Position and rotate each image differently */
+.img1 { top: 10%; left: 5%; transform: rotate(-5deg); }
+.img2 { top: 20%; left: 20%; transform: rotate(8deg); }
+.img3 { top: 15%; left: 35%; transform: rotate(-3deg); }
+.img4 { top: 25%; left: 50%; transform: rotate(6deg); }
+.img5 { top: 10%; left: 65%; transform: rotate(-10deg); }
+.img6 { top: 40%; left: 10%; transform: rotate(7deg); }
+.img7 { top: 50%; left: 25%; transform: rotate(-6deg); }
+.img8 { top: 55%; left: 40%; transform: rotate(4deg); }
+.img9 { top: 45%; left: 60%; transform: rotate(-8deg); }
+.img10 { top: 60%; left: 75%; transform: rotate(9deg); }
+.img11 { top: 70%; left: 15%; transform: rotate(-2deg); }
+.img12 { top: 80%; left: 30%; transform: rotate(5deg); }
+.img13 { top: 75%; left: 50%; transform: rotate(-7deg); }
+.img14 { top: 65%; left: 70%; transform: rotate(3deg); }
+.img15 { top: 30%; left: 80%; transform: rotate(-5deg); }
+.img16 { top: 5%; left: 30%; transform: rotate(6deg); }
+.img17 { top: 35%; left: 10%; transform: rotate(-9deg); }
+.img18 { top: 65%; left: 5%; transform: rotate(2deg); }
+.img19 { top: 85%; left: 60%; transform: rotate(-4deg); }
+.img20 { top: 60%; left: 90%; transform: rotate(7deg); }
+.img21 { top: 15%; left: 85%; transform: rotate(-6deg); }
+.img22 { top: 80%; left: 85%; transform: rotate(4deg); }
+.img23 { top: 45%; left: 85%; transform: rotate(1deg); }
+.img24 { top: 35%; left: 65%; transform: rotate(-3deg); }
+.img25 { top: 25%; left: 15%; transform: rotate(8deg); }
+
+#lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+    .cta {
+      background: rgba(44, 122, 123, 0.8);
+      color: white;
+      padding: 30px;
+      margin: 50px auto;
+      border-radius: 30px;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .cta {
+  background: #2c7a7b;
+  color: #ffffff;
+  padding: 30px;
+  margin: 50px auto;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 800px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.cta h3 {
+  font-size: 1.75rem;
+  margin-bottom: 12px;
+}
+
+.cta button {
+  padding: 12px 24px;
+  background: #ffffff;
+  color: #2c7a7b;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+  .go-up {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: rgba(44, 122, 123, 0.85);
+      color: white;
+      padding: 10px 14px;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      z-index: 999;
+      display: none;
+      font-size: 1.4rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    
+
+    .bottom-note {
+      text-align: center;
+      padding-top: 15px;
+      border-top: 1px solid #444;
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .dropdown a {
+  text-decoration: none;
+  color: black;
+  padding: 8px;
+  display: block;
+}
+
+.dropdown a.active {
+  color: #333;
+  background-color: #d0ebff; /* Soft sky blue*/     
+  border-radius: 4px;
+  
+}
+#dropdownMenu {
+  display: none;
+}
+  </style>
+</head>
+<body id="top">
+
+  <header>
+    <div class="logo">
+      <img src="https://i.postimg.cc/tgDzS2HG/dove-love-charity-stamp.png" alt="Dove Love Logo">
+    </div>
+    <div class="menu" id="menuBtn">≡</div>
+    <div class="dropdown" id="dropdownMenu">
+      <a href="index.html">Home</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="programs.html">Programs</a>
+      <a href="getinvolved.html">Get Involved</a>
+      <a href="contactus.html">Contact Us</a>
+    </div>
+  </header>
+
+  <div class="hero" id="hero">
+  <div class="hero-content">
+    <h1>Welcome to Dove Love Charity Organization</h1>
+    <p>Bringing hope, love, and a future to orphaned children and vulnerable communities in Uganda.</p>
+  </div>
+</div>
+
+  <section id="about">
+    <h2>Who we are</h2>
+    <p>
+      Dove Love Charity Organization is a grassroots non profit based in Uganda, committed to uplifting orphaned and vulnerable children. We believe every child deserves love, education, and the chance to build a brighter future. Initiated by Andrew alongside a colleague, out of a personal journey of pain and hope, we operate with deep community roots and a clear mission to care, educate, and empower.
+    </p>
+  </section>
+
+  <section id="what" style="background-color: #f0f9f8;">
+    <h2>What we do</h2>
+    <p>
+      We care for over <strong>50 children</strong> at our sanctuary, and the number continues to grow. We provide shelter, basic education, and emotional support. Additionally, we've reached and helped over <strong>200 other children</strong> by providing school fees, clothes, shoes, and school materials like books and pencils. We've also supported over <strong>30 elderly</strong> people with food and care. Our mission is holistic we nurture, teach, and uplift.
+    </p>
+  </section>
+
+  <section id="impact">
+    <h2>Our impact</h2>
+    <p>
+      Since our founding, Dove Love has brought light to  over <strong>300</strong> lives. We’ve enrolled <strong>dozens</strong> of children in school, provided thousands of meals, and created a space of love and belonging. Every action we take is made possible by compassionate hearts like yours.
+    </p>
+  </section>
+
+  <section style="background-color: #f0f9f8;">
+    <h2>Be part</h2>
+    <p>
+      Become part of the Dove Love family. You can support by donating, sponsoring a child, volunteering, or partnering with us to reach more communities. No act is too small to make a difference.
+    </p>
+  </section>
+<!-- Gallery Section -->
+<section id="gallery">
+  <h2>Gallery</h2>
+<p class="gallery-note">Click on any image to view it in full size</p>
+  <div class="collage-gallery">
+    <img src="https://i.postimg.cc/zvL7JFgw/Screenshot-20250901-220756-Gallery.jpg" alt="Gallery image 1" class="collage-img img1">
+    <img src="https://i.postimg.cc/zv9j3HCs/Screenshot-20250901-221038-Gallery.jpg" alt="Gallery image 2" class="collage-img img2">
+    <img src="https://i.postimg.cc/G3VcMGfM/Screenshot-20250503-224408-Instagram.jpg" alt="Gallery image 3" class="collage-img img3">
+    <img src="https://i.postimg.cc/zv9j3HCs/Screenshot-20250901-221038-Gallery.jpg" alt="Gallery image 4" class="collage-img img4">
+    <img src="https://i.postimg.cc/DyGQBg3s/Screenshot-20250901-223722-Gallery.jpg" alt="Gallery image 5" class="collage-img img5">
+    <img src="https://i.postimg.cc/DyGQBg3s/Screenshot-20250901-223722-Gallery.jpg" alt="Gallery image 6" class="collage-img img6">
+    <img src="https://i.postimg.cc/Prx79Rgh/Screenshot-20250503-223744-Gallery.jpg" alt="Gallery image 7" class="collage-img img7">
+    <img src="https://i.postimg.cc/DyGQBg3s/Screenshot-20250901-223722-Gallery.jpg" alt="Gallery image 8" class="collage-img img8">
+    <img src="https://i.postimg.cc/Y28VXHyb/Screenshot-20250503-223326-Gallery.jpg" alt="Gallery image 9" class="collage-img img9">
+    <img src="https://i.postimg.cc/zv9j3HCs/Screenshot-20250901-221038-Gallery.jpg" alt="Gallery image 10" class="collage-img img10">
+    <img src="https://i.postimg.cc/zB7dPCpV/Screenshot-20250503-222842-Gallery.jpg" alt="Gallery image 11" class="collage-img img11">
+    <img src="https://i.postimg.cc/NfSXYKzF/IMG-20250503-162513-413.jpg" alt="Gallery image 12" class="collage-img img12">
+    <img src="https://i.postimg.cc/MpBQGzCD/IMG-20250503-162506-417.jpg" alt="Gallery image 13" class="collage-img img13">
+    <img src="https://i.postimg.cc/2yH4YVK3/Screenshot-20250419-015306-Linked-In.jpg" alt="Gallery image 14" class="collage-img img14">
+    <img src="https://i.postimg.cc/Y2Zf6PZM/Screenshot-20250901-223747-Gallery.jpg" alt="Gallery image 15" class="collage-img img15">
+    <img src="https://i.postimg.cc/bJ9x660x/Screenshot-20250419-013734-Gallery.jpg" alt="Gallery image 16" class="collage-img img16">
+    <img src="https://i.postimg.cc/0yh0rK2w/Screenshot-20250419-013650-Gallery.jpg" alt="Gallery image 17" class="collage-img img17">
+    <img src="https://i.postimg.cc/VNMBtsdH/Screenshot-20250419-013642-Gallery.jpg" alt="Gallery image 18" class="collage-img img18">
+    <img src="https://i.postimg.cc/Df5QLMwF/Screenshot-20250419-013402-Gallery.jpg" alt="Gallery image 19" class="collage-img img19">
+    <img src="https://i.postimg.cc/7Y63Vn5z/Screenshot-20250419-013353-Gallery.jpg" alt="Gallery image 20" class="collage-img img20">
+    <img src="https://i.postimg.cc/VLVjH0tV/Screenshot-20250419-013315-Gallery.jpg" alt="Gallery image 21" class="collage-img img21">
+    <img src="https://i.postimg.cc/FzMyhf37/Screenshot-20250901-223732-Gallery.jpg" alt="Gallery image 22" class="collage-img img22">
+    <img src="https://i.postimg.cc/4N9PqwZs/Screenshot-20250901-220651-Gallery.jpg" alt="Gallery image 23" class="collage-img img23">
+    <img src="https://i.postimg.cc/N0hRQhp8/Screenshot-20250419-013254-Gallery.jpg" alt="Gallery image 24" class="collage-img img24">
+    <img src="https://i.postimg.cc/yYgKc2yS/Screenshot-20250419-014908-Linked-In.jpg" alt="Gallery image 25" class="collage-img img25">
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="Full Image">
+</div>
+
+  <div class="cta">
+    <h3>Join our mission</h3>
+    <p>Together we can make a lasting difference in a child’s life.</p>
+    <button>Make a diffirence</button>
+  </div>
+
+  <a href="#top" class="go-up" id="goUpBtn" title="Back to top">^</a>
+
+ <!-- Footer Section -->
+<footer style="background-color: #111; padding: 40px 20px; color: #fff;">
+  <div style="max-width: 1000px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+    
+    <!-- Organization Info -->
+    <div style="flex: 1; min-width: 250px;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 10px;">Dove Love Charity Organization</h2>
+      <p style="font-size: 1rem; color: #ccc;">
+        Bringing love to children through community support and education
+      </p>
+    </div>
+
+    <!-- Contact Info -->
+    <div style="flex: 1; min-width: 250px;">
+      <h3>Contact Us</h3>
+      <p>Phone: +256 777 476 617</p>
+      <p>Email: <a href="mailto:info@dovelovecharity.org" style="color: #ccc;">info@dovelovecharity.org</a></p>
+    </div>
+
+    <!-- Social Media -->
+    <div style="flex: 1; min-width: 250px;">
+      <h3>Connect with us</h3>
+      <a href="https://www.facebook.com/profile.php?id=61575971335681" target="_blank" style="margin-right: 10px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" width="30">
+      </a>
+      <a href="https://www.linkedin.com/company/dove-love-charity-org/" target="_blank" style="margin-right: 10px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="30">
+      </a>
+      <a href="https://www.instagram.com/andrew_dove_love?igsh=emV0OWFiZmxueWVj" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30">
+      </a>
+    </div>
+  </div>
+
+  <!-- Registration Info & Copyright -->
+  <div style="margin-top: 30px; text-align: center; font-size: 0.9rem; color: #aaa;">
+    Registered Non Profit Organization  in Uganda  Registration No: <strong>:80034798673897</strong><br>
+    &copy; 2025 Dove Love Charity Organization. All rights reserved.
+  </div>
+</footer>
+
+  <script>
+  const goUpBtn = document.getElementById("goUpBtn");
+  const menuBtn = document.getElementById("menuBtn");
+  const dropdownMenu = document.getElementById("dropdownMenu");
+
+  // Toggle dropdown menu
+  menuBtn.addEventListener("click", () => {
+    dropdownMenu.style.display = dropdownMenu.style.display === "flex" ? "none" : "flex";
+  });
+
+  // Show or hide "Go Up" button on scroll
+  window.addEventListener("scroll", () => {
+    goUpBtn.style.display = window.scrollY > 400 ? "block" : "none";
+  });
+
+  // Optional: Hide dropdown when clicking outside
+  window.addEventListener("click", (e) => {
+    if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+      dropdownMenu.style.display = "none";
+    }
+  });
+  
+  const hero = document.getElementById("hero");
+  const images = [
+    "https://i.postimg.cc/zvL7JFgw/Screenshot-20250901-220756-Gallery.jpg",
+    "https://i.postimg.cc/cJRKDjRF/20250502-175835.jpg",
+    "https://i.postimg.cc/sxN1QRzg/20250502-180136.jpg",
+    "https://i.postimg.cc/50pXJCkv/20250502-180015.jpg",
+    "https://i.postimg.cc/zv9j3HCs/Screenshot-20250901-221038-Gallery.jpg"
+  ];
+  let currentIndex = 0;
+
+  function changeHeroBackground() {
+    hero.style.backgroundImage = `url('${images[currentIndex]}')`;
+    currentIndex = (currentIndex + 1) % images.length;
+  }
+
+  // Start slideshow
+  changeHeroBackground();
+  setInterval(changeHeroBackground, 5000); // every 2 seconds
+
+  const galleryimages = document.querySelectorAll('.collage-img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  galleryimages.forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+  }
+  const currentPage = window.location.pathname.split("/").pop();
+  const links = document.querySelectorAll(".dropdown a");
+
+  links.forEach(link => {
+    const linkPage = link.getAttribute("href");
+    if (linkPage === currentPage || (currentPage === "" && linkPage === "home.html")) {
+      link.classList.add("active");
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuBtn = document.getElementById('menuBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    let isMenuOpen = false;
+
+    menuBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      isMenuOpen = !isMenuOpen;
+      dropdownMenu.style.display = isMenuOpen ? 'block' : 'none';
+    });
+
+    document.addEventListener('click', function (e) {
+      if (isMenuOpen) {
+        dropdownMenu.style.display = 'none';
+        isMenuOpen = false;
+      }
+    });
+
+    dropdownMenu.addEventListener('click', function (e) {
+      e.stopPropagation(); // Prevents clicks inside the menu from closing it
+    });
+  });
+</script>
+</body>
+</html>

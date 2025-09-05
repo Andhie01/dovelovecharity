@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Programs - Dove Love Charity Organization</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      background-color: #ffffff;
+      color: #2c2c2c;
+      -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+    }
+
+    header {
+      background: linear-gradient(to right, #0d3b66, #005f73);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      font-weight: 600px;
+    }
+
+    header p {
+      font-size: 1.1em;
+      max-width: 700px;
+      margin: auto;
+    }
+.menu-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.menu-btn {
+  color: white;
+  font-size: 22px;
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.dropdown {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  min-width: 160px;
+}
+
+.dropdown a {
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #005f73;
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s;
+}
+
+.dropdown a:hover {
+  background: #e0f2f1;
+}
+    section {
+      padding: 40px 20px;
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 1.8em;
+      color: #005f73;
+      text-align: left;
+      margin-bottom: 20px;
+      font-weight: 500px;
+    }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .program-card {
+      background-color: #e0f2f1;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .program-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .program-card h3 {
+      margin-top: 0;
+      color: #004d40;
+    }
+
+    .program-card p {
+      font-size: 0.95em;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      background-color: #f1faff;
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .highlight h3 {
+      margin-bottom: 15px;
+      color: #003d5b;
+    }
+
+    .cta {
+      background-color: #005f73;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 50px;
+    }
+
+    .cta h3 {
+      font-size: 1.6em;
+      margin-bottom: 10px;
+    }
+
+    .cta p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 1em;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      background: white;
+      color: #005f73;
+      padding: 10px 20px;
+      border-radius: 30px;
+      margin: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .buttons a:hover {
+      background: #e0f2f1;
+    }
+      .go-up {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: rgba(44, 122, 123, 0.85);
+      color: white;
+      padding: 10px 14px;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      z-index: 999;
+      display: none;
+      font-size: 1.4rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    
+    }
+
+    .bottom-note {
+      text-align: center;
+      padding-top: 15px;
+      border-top: 1px solid #444;
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+    .dropdown a {
+  text-decoration: none;
+  color: black;
+  padding: 8px;
+  display: block;
+}
+
+.dropdown a.active {
+  color: #333;
+  background-color: #d0ebff; /* Soft sky blue*/     
+  border-radius: 4px;
+}
+.projects-section {
+  padding: 40px 20px;
+      max-width: 1050px;
+      margin: auto;
+}
+
+.main-title {
+  text-align: left;
+  font-size: 36px;
+  color: #005f73;
+  margin-bottom: 40px;
+}
+
+.projects-container {
+  max-width: 1050px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.project-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.project-title {
+  color: #2980b9;
+  margin-bottom: 10px;
+}
+  </style>
+</head>
+<body>
+  <header style="position: relative; background: url('https://i.postimg.cc/vHRDTHjT/Screenshot-20250504-195554-Gallery.jpg') center/cover no-repeat;">
+  <div style="background-color: rgba(0, 0, 0, 0.55); padding:  2px;">
+    <h1 style="color: #fff;">Our Programs</h1>
+    <p style="color: #f0f0f0;">Transforming lives through love, education, nutrition, and faith-driven community care.</p>
+    <div class="menu-container">
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+      <div class="dropdown" id="dropdownMenu">
+        <a href="index.html">Home</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="programs.html">Programs</a>
+        <a href="getinvolved.html">Get-involved</a>
+        <a href="contactus.html">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <section>
+  <div class="program-grid">
+    <!-- Feeding Program -->
+    <div class="program-card" style="background-color: transparent; box-shadow: none; padding: 0;">
+      <h3 class="section-title">Feeding Program</h3>
+      <div style="position: relative; width: 100%; max-width: 400px; margin: 0 auto;">
+  <div style="padding-top: 172%; position: relative;">
+    <iframe 
+      src="https://www.youtube.com/embed/B8mgZO88iyc?autoplay=1&mute=1&loop=1&playlist=B8mgZO88iyc" 
+      title="Feeding Program Video"
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+      <p>We serve 2 meals a day, and by God's provision, sometimes even 3. On difficult days, we at least ensure one nourishing meal to keep our children going. We provide our elders with monthly food packages to sustain them.</p>
+    </div>
+
+    <!-- Education Support -->
+    <div class="program-card" style="background-color: transparent; box-shadow: none; padding: 0;">
+      <h3 class="section-title">Education Support</h3>
+      <img src="https://i.postimg.cc/JzNVTGsS/Screenshot-20250419-013734-Gallery.jpg" alt="Education Support Image" style="width: 100%; border-radius: 12px; margin: 15px 0;">
+      <p>With 3 dedicated teachers, we run nursery to Primary 5 classes in our temporary structures, giving every child a chance to learn and dream big. And we pay school fees for some children studying from different schools.</p>
+    </div>
+
+    <!-- Faith & Mentorship -->
+    <div class="program-card" style="background-color: transparent; box-shadow: none; padding: 0;">
+      <h3 class="section-title">Faith & Mentorship</h3>
+      <img src="https://i.postimg.cc/T3Mvqr3r/Screenshot-20250503-223809-Gallery.jpg" alt="Faith and Mentorship Image" style="width: 100%; border-radius: 12px; margin: 15px 0;">
+      <p>We guide our children spiritually and emotionally, helping them find strength in prayer and grow with faith, hope, and values that last a lifetime.</p>
+    </div>
+
+    <!-- Emergency Care (Preserve card style) -->
+    <div class="program-card">
+      <h3>Emergency Care</h3>
+      <p>For children facing abuse or abandonment, we offer shelter, clothing, and safety while surrounding them with warmth, prayers, and love.</p>
+    </div>
+  </div>
+</section>
+
+  <section class="highlight">
+    <h3>Impact So Far</h3>
+    <p>
+      By God’s grace and through kind hearts like yours, we’ve provided food, learning, and safety for <strong>50 children</strong> and counting. School fees, learning materials, clothes and shoes for over <strong>200 children</strong> and counting. Food and care for <strong>30 elderly people</strong> and counting. Together, we are rewriting their story.
+    </p>
+  </section>
+<section class="projects-section">
+  <h2 class="main-title">Projects in the Pipeline</h2>
+
+  <div class="projects-container">
+
+    <!-- Project 1 -->
+    <div class="project-card">
+      <h3 class="project-title">1. Clean Water Project - Every Drop Counts</h3>
+      <p><strong>Goal:</strong> Provide a sustainable source of clean, safe drinking water for Dove Love and the surrounding community.</p>
+      <p><strong>Why It Matters:</strong>  Borehole access in our community is extremely poor. Since the area lies near lakes, authorities assume water is readily available-yet this water is contaminated and unsafe. Children and families are left with no choice but to use this dirty water, leading to frequent outbreaks of waterborne diseases. The health and lives of our children are constantly at risk.</p>
+      <p><strong>How You Can Help:</strong> With your support, we can drill a reliable borehole or install a community water purification system, ensuring access to clean water that will safeguard the well-being of our children and uplift the entire community.</p>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+      <h3 class="project-title">2. Solar Power Project - Light Up Their World</h3>
+      <p><strong>Goal:</strong> Install a complete solar energy system at Dove Love Orphanage.</p>
+      <p><strong>Why It Matters:</strong> Our community has no access to electricity. Once the sun sets, we are plunged into total darkness every night. This not only hinders evening activities like studying and preparing meals, but also exposes our children to insecurity and fear. With a reliable solar system, we can power essential lighting, charge devices, and create a safer, more hopeful environment.</p>
+      <p><strong>How You Can Help:</strong> Your support can bring lasting light to our orphanage-fueling hope, education, and security through clean, sustainable energy.</p>
+    </div>
+    
+  <!-- Project 3 -->
+    <div class="project-card">
+      <h3 class="project-title">3. Permanent Shelter & Learning Structures - Build Their Future</h3>
+      <p><strong>Goal:</strong> Construct stable housing and classrooms for the children.</p>
+      <p><strong>Why It Matters:</strong> Current structures are made of iron sheets and wooden poles-hot,some are grass hutched, unsafe, and easily damaged. Permanent buildings will provide safety, comfort, and a better learning environment for our children.</p>
+    </div>
+    <!-- Project 4 -->
+    <div class="project-card">
+      <h3 class="project-title">4.Food Security Through Agriculture - Grow to Nourish</h3>
+      <p><strong>Goal:</strong> Acquire land and tools to start farming, growing our own food, instead of buying everyday.</p>
+      <p><strong>Why It Matters:</strong> We rely on unpredictable food donations.
+With our own farm, we can grow nutritious food year-round, teach children sustainable farming skills, and become more self-reliant.</p>
+    </div>
+</section>
+
+  <section class="cta">
+    <h3>Be Part of the Change</h3>
+    <p>
+      You can help us continue this journey. Your support means more meals, better classrooms, and a brighter future. Join our mission today.
+    </p>
+    <div class="buttons">
+      <a href="mailto:andrew671999@gmail.com?subject=Volunteering%20Interest&body=Dear%20Dove%20Love%20Orphanage%2C%0A%0AI%20am%20interested%20in%20volunteering%20with%20your%20organization.%20Please%20let%20me%20know%20how%20I%20can%20get%20involved.%0A%0AThank%20you.%0A%0ABest%20regards%2C%0A[Your%20Name]" class="btn btn-primary">
+  Volunteer With Us
+</a>
+      <a href=" https://www.mchanga.africa/fundraiser/103960">Donate Now</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </section>
+  <a href="#top" class="go-up" id="goUpBtn" title="Back to top">^</a>
+
+   <!-- Footer Section -->
+<footer style="background-color: #111; padding: 40px 20px; color: #fff;">
+  <div style="max-width: 1000px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+    
+    <!-- Organization Info -->
+    <div style="flex: 1; min-width: 250px;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 10px;">Dove Love Charity Organization</h2>
+      <p style="font-size: 1rem; color: #ccc;">
+        Bringing love to children through community support and education
+      </p>
+    </div>
+
+    <!-- Contact Info -->
+    <div style="flex: 1; min-width: 250px;">
+      <h3>Contact Us</h3>
+      <p>Phone: +256 777 476 617</p>
+      <p>Email: <a href="mailto:info@dovelovecharity.org" style="color: #ccc;">info@dovelovecharity.org</a></p>
+    </div>
+
+    <!-- Social Media -->
+    <div style="flex: 1; min-width: 250px;">
+      <h3>Connect With Us</h3>
+      <a href="https://www.facebook.com/profile.php?id=61575971335681" target="_blank" style="margin-right: 10px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" width="30">
+      </a>
+      <a href="https://www.linkedin.com/company/dove-love-charity-org/" target="_blank" style="margin-right: 10px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="30">
+      </a>
+      <a href="https://www.instagram.com/andrew_dove_love?igsh=emV0OWFiZmxueWVj" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30">
+      </a>
+    </div>
+  </div>
+
+  <!-- Registration Info & Copyright -->
+  <div style="margin-top: 30px; text-align: center; font-size: 0.9rem; color: #aaa;">
+    Registered Non-Profit Organization  in Uganda  Registration No: <strong>:80034798673897</strong><br>
+    &copy; 2025 Dove Love Charity Organization. All rights reserved.
+  </div>
+</footer>
+  <script>
+  const goUpBtn = document.getElementById("goUpBtn");
+  // Show or hide "Go Up" button on scroll
+  window.addEventListener("scroll", () => {
+    goUpBtn.style.display = window.scrollY > 400 ? "block" : "none";
+  });
+  function toggleMenu() {
+  const menu = document.getElementById("dropdownMenu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+const currentPage = window.location.pathname.split("/").pop();
+  const links = document.querySelectorAll(".dropdown a");
+
+  links.forEach(link => {
+    const linkPage = link.getAttribute("href");
+    if (linkPage === currentPage || (currentPage === "" && linkPage === "home.html")) {
+      link.classList.add("active");
+    }
+  });
+  </script>
+
+</body>
+</html>

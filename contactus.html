@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Dove Love Charity Organization</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2c5f8d8d4.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --primary: #00b4d8;
+      --accent: #90e0ef;
+      --glass: rgba(255, 255, 255, 0.06);
+      --white: #f1f1f1;
+      --font: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: radial-gradient(circle at top left, #03045e, #023e8a, #0f172a);
+      color: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+    }
+
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    header h1, header p {
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px rgba(0,0,0,0.6);
+    }
+
+    header p {
+      max-width: 600px;
+      margin: auto;
+      font-size: 1.2rem;
+      color: #dbeafe;
+    }
+.menu-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.menu-btn {
+  color: white;
+  font-size: 22px;
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.dropdown {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  min-width: 130px;
+}
+
+.dropdown a {
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #005f73;
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s;
+}
+
+.dropdown a:hover {
+  background: #e0f2f1;
+}
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 60px 20px;
+    }
+
+    .card {
+      background: var(--glass);
+      border-radius: 20px;
+      padding: 30px;
+      width: 300px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 0 25px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 40px rgba(0,255,255,0.2);
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .card a {
+      color: var(--accent);
+      text-decoration: none;
+      display: block;
+      font-weight: 500;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    .socials {
+      text-align: center;
+      padding: 40px 20px;
+      background: #001d3d;
+    }
+
+    .socials h3 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      font-weight: 300px;
+    }
+
+    .socials a {
+      margin: 10px;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      padding: 12px 20px;
+      border-radius: 40px;
+      background: rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .socials a:hover {
+      background: var(--primary);
+      color: #001d3d;
+      transform: scale(1.05);
+    }
+
+    footer {
+      background: #111;
+      color: #eee;
+      padding: 40px 20px 20px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    footer .footer-flex {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    footer .section-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #ccc;
+      text-align: center;
+      font-size: 25px;
+    }
+
+    footer .section {
+      text-align: center;
+    }
+ .bottom-note {
+      text-align: center;
+      padding-top: 15px;
+      border-top: 1px solid #444;
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      .card {
+        width: 90%;
+      }
+    .dropdown a {
+  text-decoration: none;
+  color: black;
+  padding: 8px;
+  display: block;
+}
+
+.dropdown a.active {
+  color: #333;
+  background-color: #d0ebff; /* Soft sky blue*/     
+  border-radius: 4px;
+}
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 data-aos="fade-up">Contact Us</h1>
+    <p data-aos="fade-up" data-aos-delay="300">
+      Be the reason a child smiles today. Connect, support, or follow our journey of love.
+    </p>
+     <div class="menu-container">
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+      <div class="dropdown" id="dropdownMenu">
+        <a href="index.html">Home</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="programs.html">Programs</a>
+        <a href="getinvolved.html">Get-involved</a>
+        <a href="contactus.html">Contact Us</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="cards">
+    <div class="card" data-aos="zoom-in-up">
+      <h3><i class="fas fa-phone-alt"></i> Call or WhatsApp</h3>
+      <a href="https://wa.me/256777476617" target="_blank">+256 777 476 617</a>
+    </div>
+    <div class="card" data-aos="zoom-in-up" data-aos-delay="200">
+      <h3><i class="fas fa-envelope"></i> Email Us</h3>
+      <a href="mailto:Info@dovelovecharity.org">Info@dovelovecharity.org</a>
+    </div>
+    <div class="card" data-aos="zoom-in-up" data-aos-delay="400">
+    <h3><i class="fas fa-map-marker-alt"></i> Address:</h3>
+    <p style="color: var(--white); line-height: 1.6;">
+      Dove Love Charity Organization<br>
+      Buwoya, Buvuma District<br>
+      Uganda, East Africa
+    </p>
+  </div>
+  </section>
+
+  <section class="socials" data-aos="fade-up">
+    <h3>Follow Us & Stay Connected</h3>
+    <a href="https://www.instagram.com/andrew_dove_love?igsh=emV0OWFiZmxueWVj" target="_blank">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+    <a href="https://www.linkedin.com/in/andrew-odoi-bsc-ed-94abb3207?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+      <i class="fab fa-linkedin"></i> LinkedIn
+    </a>
+    <a href="https://youtube.com/@dove_love_orp?si=XokE9LBqQyN3MQCj" target="_blank">
+      <i class="fab fa-youtube"></i> YouTube
+    </a>
+  </section>
+
+   <!-- Footer Section -->
+<footer style="background-color: #111; padding: 40px 20px; color: #fff;">
+  <div style="max-width: 1000px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+    
+    <!-- Organization Info -->
+    <div style="flex: 1; min-width: 250px;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 10px;">Dove Love Charity Organization</h2>
+      <p style="font-size: 1rem; color: #ccc;">
+        Bringing love to children through community support and education
+      </p>
+    </div>
+
+    <!-- Contact Info -->
+    <div style="flex: 1; min-width: 250px;">
+      <h3>Contact Us</h3>
+      <p>Phone: +256 777 476 617</p>
+      <p>Email: <a href="mailto:info@dovelovecharity.org" style="color: #ccc;">info@dovelovecharity.org</a></p>
+    </div>
+
+    <!-- Social Media -->
+    <div style="flex: 1; min-width: 250px;">
+      <h3>Connect With Us</h3>
+      <a href="https://www.facebook.com/profile.php?id=61575971335681" target="_blank" style="margin-right: 10px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" width="30">
+      </a>
+      <a href="https://www.linkedin.com/company/dove-love-charity-org/" target="_blank" style="margin-right: 10px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="30">
+      </a>
+      <a href="https://www.instagram.com/andrew_dove_love?igsh=emV0OWFiZmxueWVj" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30">
+      </a>
+    </div>
+  </div>
+
+  <!-- Registration Info & Copyright -->
+  <div style="margin-top: 30px; text-align: center; font-size: 0.9rem; color: #aaa;">
+    Registered Non-Profit Organization  in Uganda  Registration No: <strong>:80034798673897</strong><br>
+    &copy; 2025 Dove Love Charity Organization. All rights reserved.
+  </div>
+</footer>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>AOS.init({ duration: 1000 });
+  function toggleMenu() {
+  const menu = document.getElementById("dropdownMenu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+  const currentPage = window.location.pathname.split("/").pop();
+  const links = document.querySelectorAll(".dropdown a");
+
+  links.forEach(link => {
+    const linkPage = link.getAttribute("href");
+    if (linkPage === currentPage || (currentPage === "" && linkPage === "home.html")) {
+      link.classList.add("active");
+    }
+  });
+  </script>
+</body>
+</html>

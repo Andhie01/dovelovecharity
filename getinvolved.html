@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Get Involved - Dove Love CharityOrganization</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      background-color: #ffffff;
+      color: #2c2c2c;
+      -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+    }
+
+    header {
+      background: linear-gradient(to right, #0d3b66, #005f73);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      font-weight: 600px;
+    }
+
+    header p {
+      font-size: 1.1em;
+      max-width: 700px;
+      margin: auto;
+    }
+    .menu-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.menu-btn {
+  color: white;
+  font-size: 22px;
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.dropdown {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  min-width: 160px;
+}
+
+.dropdown a {
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #005f73;
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s;
+}
+
+.dropdown a:hover {
+  background: #e0f2f1;
+}
+
+    section {
+      padding: 40px 20px;
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 1.8em;
+      color: #005f73;
+      text-align: left;
+      margin-bottom: 20px;
+      font-weight: 500px;
+    }
+  
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+   .card {
+  background-color: #f1faff;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0,
+0.06);
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-pic {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+    .donate-options {
+      margin-top: 20px;
+    }
+
+    .donate-options .card {
+      background-color: #e0f2f1;
+    }
+
+    .cta {
+      background-color: #005f73;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 50px;
+    }
+
+    .cta h3 {
+      font-size: 1.6em;
+      margin-bottom: 10px;
+      text-align; center;
+    }
+
+    .cta p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 1em;
+      font-weight: 300px;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      background: white;
+      color: #005f73;
+      padding: 10px 20px;
+      border-radius: 30px;
+      margin: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .buttons a:hover {
+      background: #e0f2f1;
+    }
+  .go-up {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: rgba(44, 122, 123, 0.85);
+      color: white;
+      padding: 10px 14px;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      z-index: 999;
+      display: none;
+      font-size: 1.4rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    }
+
+    .bottom-note {
+      text-align: center;
+      padding-top: 15px;
+      border-top: 1px solid #444;
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+   .dropdown a {
+  text-decoration: none;
+  color: black;
+  padding: 8px;
+  display: block;
+}
+
+.dropdown a.active {
+  color: #333;
+  background-color: #d0ebff; /* Soft sky blue*/     
+  border-radius: 4px;
+}
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Get Involved</h1>
+    <p>Your love, support, and voice can bring lasting change to the lives of the children we serve.</p>
+    <div class="menu-container">
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+      <div class="dropdown" id="dropdownMenu">
+        <a href="index.html">Home</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="programs.html">Programs</a>
+        <a href="getinvolved.html">Get-involved</a>
+        <a href="contactus.html">Contact Us</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+  <h2 class="section-title">Be an Ambassador</h2>
+  <div class="card">
+  <div class="profile-header">
+    <img src="https://i.postimg.cc/B6K4S0cH/Screenshot-20250505-125117-Linked-In.jpg" alt="Mrs. Kirstie Wimbles" class="profile-pic">
+    <h3>Mrs. Kirstie Wimbles (Europe)</h3>
+  </div>
+  <p>
+    Representing Dove Love Charity Organization across Europe, Kirstie advocates for vulnerable children and inspires others to join the movement of compassion and care.
+  </p>
+</div>
+    <div class="card">
+    <div class="profile-header">
+      <img src="https://i.postimg.cc/sfbMcGS3/Screenshot-20250505-130223-Linked-In.jpg" alt="Mr. Diganta Das" class="profile-pic">
+      <h3>Mr. DIGANTA Das (Asia)</h3>
+      </div>
+      <p>Serving as a passionate voice in Asia, Diganta spreads awareness and rallies support to give hope and opportunity to children in need.</p>
+    </div>
+  </div>
+</section>
+
+  <section>
+  <h2 class="section-title">Partner with Us</h2>
+  <div class="card">
+    <div class="profile-header">
+      <img src="https://i.postimg.cc/x1WZ02Xv/IMG-20240619-WA0013-2.jpg" alt="AGROBIOTEK" class="profile-pic">
+      <h3>AGROBIOTEK-INGENIERIE (France)</h3>
+      </div>
+      <p>We're proud to be partnered with AGROBIOTEK-INGENIERIE from Lyon, France. Together, we work to create lasting impact for children in Uganda.</p>
+    </div>
+  </div>
+</section>
+
+  <section>
+    <h2 class="section-title">Ways to Donate</h2>
+    <div class="grid donate-options">
+  <div class="card">
+    <h3>Daily Bread & Emergencies</h3>
+  <p>Your support helps us provide food, learning materials, and urgent healthcare for the 50 children under our care.</p>
+
+  <ul class="donation-list">
+    <li><strong>$330</strong> covers a month’s supply of rice for the 50 children</li>
+    <li><strong>$100</strong> provides beans for the entire month for the 50 children</li>
+    <li><strong>$30</strong> secures sugar for the whole month for the 50 children</li>
+    <li><strong>$40</strong> ensures porridge flour for daily breakfast for the whole month for 50 children</li>
+  </ul>
+
+  <p class="highlight"><strong>$500</strong> can fully sponsor nutritious meals for all 50 children for an entire month.</p>
+  <p>Every gift brings immediate relief—and lasting hope. <strong>Thank you</strong> for standing with us.</p>
+    <a href="https://www.mchanga.africa/fundraiser/103960" style="color:#005f73; font-weight:bold;">Give Now</a>
+  </div>
+  
+  <div class="card">
+    <h3>Permanent Structure Drive</h3>
+    <p>
+      Help us build permanent classrooms and shelter for our children.
+      Your monthly or major gift supports the construction of lasting spaces for learning, safety, and growth.
+      Join us in laying the foundation for their future.
+    </p>
+    <a href="https://www.mchanga.africa/fundraiser/103960" style="color:#005f73; font-weight:bold;">Support the Build</a>
+  </div>
+</div>
+      <div class="card">
+        <h3>Sponsor a Child</h3>
+        <p>
+  Form a meaningful connection by sponsoring one of our 50 children. As a sponsor, you’ll receive updates and see the direct impact of your support.
+</p>
+<p>
+  With <strong>$30 per month</strong>, you can provide a child with nutritious meals and access to education—essentials that build a brighter future.
+</p>
+        <a href="https://www.mchanga.africa/fundraiser/103960" style="color:#005f73; font-weight:bold;">Sponsor a Child</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h3>Join the Dove Love Movement</h3>
+    <p>Together, we can change lives. Whether you donate, partner, or become an ambassador — you are part of the story God is writing through Dove Love Charity Organization.</p>
+    <div class="buttons">
+      <a href="mailto:info@dovelovecharity.org?subject=Ambassador%20Interest&body=Hello%20Dove%20Love%20Charity%20Organization%2C%0A%0AI%20am%20interested%20in%20becoming%20an%20ambassador%20for%20your%20organization.%20Please%20let%20me%20know%20how%20to%20proceed.">Join as Ambassador</a>
+      <a href="mailto:info@dovelovecharity.org?subject=Partnership%20Interest&body=Hello%20Dove%20Love%20Charity%20Organization%2C%0A%0AI%20would%20like%20to%20partner%20with%20your%20organization%20to%20support%20your%20mission.%20Please%20provide%20more%20information.">Partner with Us</a>
+      <a href="https://www.mchanga.africa/fundraiser/103960">Donate Now</a>
+    </div>
+  </section>
+
+  <a href="#top" class="go-up" id="goUpBtn" title="Back to top">^</a>
+
+  <!-- Footer Section -->
+<footer style="background-color: #111; padding: 40px 20px; color: #fff;">
+  <div style="max-width: 1000px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+    
+    <!-- Organization Info -->
+    <div style="flex: 1; min-width: 250px;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 10px;">Dove Love Charity Organization</h2>
+      <p style="font-size: 1rem; color: #ccc;">
+        Bringing love to children through community support and education
+      </p>
+    </div>
+
+    <!-- Contact Info -->
+    <div style="flex: 1; min-width: 250px;">
+      <h3>Contact Us</h3>
+      <p>Phone: +256 777 476 617</p>
+      <p>Email: <a href="mailto:info@dovelovecharity.org" style="color: #ccc;">info@dovelovecharity.org</a></p>
+    </div>
+
+    <!-- Social Media -->
+    <div style="flex: 1; min-width: 250px;">
+      <h3>Connect With Us</h3>
+      <a href="https://www.facebook.com/profile.php?id=61575971335681" target="_blank" style="margin-right: 10px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" width="30">
+      </a>
+      <a href="https://www.linkedin.com/company/dove-love-charity-org/" target="_blank" style="margin-right: 10px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="30">
+      </a>
+      <a href="https://www.instagram.com/andrew_dove_love?igsh=emV0OWFiZmxueWVj" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30">
+      </a>
+    </div>
+  </div>
+
+  <!-- Registration Info & Copyright -->
+  <div style="margin-top: 30px; text-align: center; font-size: 0.9rem; color: #aaa;">
+    Registered Non Profit Organization  in Uganda  Registration No: <strong>:80034798673897</strong><br>
+    &copy; 2025 Dove Love Charity Organization. All rights reserved.
+  </div>
+</footer>
+<script>
+  const goUpBtn = document.getElementById("goUpBtn");
+  // Show or hide "Go Up" button on scroll
+  window.addEventListener("scroll", () => {
+    goUpBtn.style.display = window.scrollY > 400 ? "block" : "none";
+  });
+  function toggleMenu() {
+  const menu = document.getElementById("dropdownMenu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+  const currentPage = window.location.pathname.split("/").pop();
+  const links = document.querySelectorAll(".dropdown a");
+
+  links.forEach(link => {
+    const linkPage = link.getAttribute("href");
+    if (linkPage === currentPage || (currentPage === "" && linkPage === "home.html")) {
+      link.classList.add("active");
+    }
+  });
+  </script>
+</body>
+</html>
