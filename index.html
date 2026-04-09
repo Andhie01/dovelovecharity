@@ -3,533 +3,2348 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dove Love Charity Organization</title>
- <link rel="icon" href="favicon.jpg" type="image/jpeg">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Dove Love Charity Organization — Empowering orphaned and vulnerable children in Uganda, East Africa through education, shelter, nutrition, and love."/>
+  <title>Dove Love Charity Organization — Hope for Uganda's Children</title>
+  <link rel="icon" href="https://i.postimg.cc/tgDzS2HG/dove-love-charity-stamp.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* ═══════════════════════════════════════════════
+       DESIGN TOKENS
+       Color palette anchored to logo blue (#0d5c8a)
+       One font: Inter 400–800
+    ═══════════════════════════════════════════════ */
+    :root {
+      --blue:        #0d5c8a;   /* logo primary — impact bar, borders, sponsor button  */
+      --blue-mid:    #1a7ab8;   /* hover states, links                                */
+      --blue-light:  #e6f1f8;   /* soft section backgrounds                           */
+      --amber:       #c8621a;   /* primary donate CTA                                 */
+      --amber-hover: #a84e14;
+      --amber-light: #fdf1e8;
+      --dark:        #0e1c2a;   /* footer                                             */
+      --text:        #17202a;   /* headings, strong                                   */
+      --subtext:     #475a6b;   /* body paragraphs — darker for readability           */
+      --bg-soft:     #f0f2f5;   /* alternate section background                       */
+      --bg-warm:     #f5f4f1;   /* warm paper tone — stories, problem sections        */
+      --white:       #ffffff;
+      --card-shadow: 0 2px 18px rgba(0,0,0,0.06);
+      --radius:      10px;
+      --radius-pill: 50px;
     }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      line-height: 1.6;
-      background-color: #ffffff;
-      color: #2c2c2c;
-       -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--text);
+      background: #faf9f7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
-    header {
-  width: 100%;
-  background: transparent;
-  padding:  20px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute; /* Change from relative to absolute */
-  top: 0;
-  left: 0;
-  z-index: 999;
-}
-
-header .logo img {
-  height: 120px; /* Increased from 50px */
-  object-fit: contain;
-}
-
-    header .menu {
-      font-size: 2rem;
-      cursor: pointer;
-      color: white;
-      z-index: 1001;
+    /* ═══════════════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════════════ */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 16px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.3s ease;
     }
 
-    .dropdown {
+    #navbar.scrolled {
+      background: var(--white);
+      box-shadow: 0 1px 24px rgba(0,0,0,0.09);
+      padding: 10px 48px;
+    }
+
+    .nav-logo img {
+      height: 64px;
+      transition: height 0.3s;
+      display: block;
+    }
+
+    #navbar.scrolled .nav-logo img { height: 50px; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      position: relative;
+      letter-spacing: 0.01em;
+      transition: color 0.25s;
+    }
+
+    #navbar.scrolled .nav-links a { color: var(--text); }
+
+    .nav-links a::after {
+      content: '';
       position: absolute;
-      top: 70px;
-      right: 40px;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 10px;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--blue-mid);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+
+    .nav-donate-btn {
+      background: var(--amber) !important;
+      color: var(--white) !important;
+      padding: 9px 22px;
+      border-radius: var(--radius-pill);
+      font-weight: 600 !important;
+      font-size: 0.85rem !important;
+      letter-spacing: 0.01em;
+      transition: background 0.25s, transform 0.2s !important;
+      white-space: nowrap;
+    }
+
+    .nav-donate-btn:hover {
+      background: var(--amber-hover) !important;
+      transform: translateY(-1px);
+    }
+
+    .nav-donate-btn::after { display: none !important; }
+
+    .hamburger {
       display: none;
       flex-direction: column;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      z-index: 1000;
-    }
-
-    .dropdown a {
-      padding: 12px 20px;
-      text-decoration: none;
-      color: #2c7a7b;
-      border-bottom: 1px solid #eee;
-    }
-
-    .dropdown a:hover {
-      background: #f0f9f8;
-    }
-
-    .hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-align: center;
-  padding-top: 140px;
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  transition: background-image 1s ease-in-out;
-}
-
-.hero-content {
-  z-index: 2;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  z-index: 1;
-}
-
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 0px;
-      font-weight: 600;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-    }
-
-    .hero p {
-      font-size: 1.3rem;
-      max-width: 600px;
-      font-weight: 300px;
-      margin: auto;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
-    }
-
-    section {
-      padding: 60px 20px;
-      text-align: left;
-    }
-
-    section h2 {
-      font-size: 2rem;
-      color: #2c7a7b;
-      margin-bottom: 20px;
-      font-weight: 500;
-      text-align: left;
-      margin: 0 auto;
-      max-width: 1050px;
-    }
-
-    section p {
-      max-width: 1050px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      font-weight: 300px;
-      color: #444;
-    }
-    
-#gallery {
-  padding: 2rem;
-  background-color: #f5f5f5;
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-#gallery h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-.gallery-note {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: -0.5rem;
-  margin-bottom: 1.5rem;
-}
-.collage-gallery {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-}
-
-.collage-img {
-  position: absolute;
-  width: 150px;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.collage-img:hover {
-  transform: scale(1.1);
-}
-
-/* Position and rotate each image differently */
-.img1 { top: 10%; left: 5%; transform: rotate(-5deg); }
-.img2 { top: 20%; left: 20%; transform: rotate(8deg); }
-.img3 { top: 15%; left: 35%; transform: rotate(-3deg); }
-.img4 { top: 25%; left: 50%; transform: rotate(6deg); }
-.img5 { top: 10%; left: 65%; transform: rotate(-10deg); }
-.img6 { top: 40%; left: 10%; transform: rotate(7deg); }
-.img7 { top: 50%; left: 25%; transform: rotate(-6deg); }
-.img8 { top: 55%; left: 40%; transform: rotate(4deg); }
-.img9 { top: 45%; left: 60%; transform: rotate(-8deg); }
-.img10 { top: 60%; left: 75%; transform: rotate(9deg); }
-.img11 { top: 70%; left: 15%; transform: rotate(-2deg); }
-.img12 { top: 80%; left: 30%; transform: rotate(5deg); }
-.img13 { top: 75%; left: 50%; transform: rotate(-7deg); }
-.img14 { top: 65%; left: 70%; transform: rotate(3deg); }
-.img15 { top: 30%; left: 80%; transform: rotate(-5deg); }
-.img16 { top: 5%; left: 30%; transform: rotate(6deg); }
-.img17 { top: 35%; left: 10%; transform: rotate(-9deg); }
-.img18 { top: 65%; left: 5%; transform: rotate(2deg); }
-.img19 { top: 85%; left: 60%; transform: rotate(-4deg); }
-.img20 { top: 60%; left: 90%; transform: rotate(7deg); }
-.img21 { top: 15%; left: 85%; transform: rotate(-6deg); }
-.img22 { top: 80%; left: 85%; transform: rotate(4deg); }
-.img23 { top: 45%; left: 85%; transform: rotate(1deg); }
-.img24 { top: 35%; left: 65%; transform: rotate(-3deg); }
-.img25 { top: 25%; left: 15%; transform: rotate(8deg); }
-
-#lightbox {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-#lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-}
-    .cta {
-      background: rgba(44, 122, 123, 0.8);
-      color: white;
-      padding: 30px;
-      margin: 50px auto;
-      border-radius: 30px;
-      width: 90%;
-      max-width: 800px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      text-align: center;
-    }
-
-    .cta {
-  background: #2c7a7b;
-  color: #ffffff;
-  padding: 30px;
-  margin: 50px auto;
-  border-radius: 16px;
-  width: 90%;
-  max-width: 800px;
-  text-align: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-.cta h3 {
-  font-size: 1.75rem;
-  margin-bottom: 12px;
-}
-
-.cta button {
-  padding: 12px 24px;
-  background: #ffffff;
-  color: #2c7a7b;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-  .go-up {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background: rgba(44, 122, 123, 0.85);
-      color: white;
-      padding: 10px 14px;
-      font-weight: bold;
-      border-radius: 12px;
+      gap: 5px;
       cursor: pointer;
-      text-decoration: none;
-      z-index: 999;
+      padding: 6px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 2px;
+      transition: background 0.3s;
+    }
+
+    #navbar.scrolled .hamburger span { background: var(--text); }
+
+    .mobile-menu {
       display: none;
-      font-size: 1.4rem;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--white);
+      z-index: 998;
+      flex-direction: column;
+      padding: 88px 32px 40px;
+      gap: 0;
     }
 
-    
+    .mobile-menu.open { display: flex; }
 
-    .bottom-note {
+    .mobile-menu a {
+      padding: 16px 0;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #f0f0f0;
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:hover { color: var(--blue); }
+
+    .mobile-menu .donate-mobile {
+      margin-top: 28px;
+      background: var(--amber);
+      color: var(--white) !important;
       text-align: center;
-      padding-top: 15px;
-      border-top: 1px solid #444;
-      margin-top: 30px;
-      font-size: 0.85rem;
-      color: #666;
+      border-radius: var(--radius-pill);
+      border: none;
+      padding: 16px;
+      font-size: 1rem;
+      font-weight: 600;
     }
-    .dropdown a {
-  text-decoration: none;
-  color: black;
-  padding: 8px;
-  display: block;
-}
 
-.dropdown a.active {
-  color: #333;
-  background-color: #d0ebff; /* Soft sky blue*/     
-  border-radius: 4px;
-  
-}
-#dropdownMenu {
-  display: none;
-}
+    .mobile-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      line-height: 1;
+      padding: 4px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       HERO — cinematic, bottom-center anchored
+       Gradient: dark at base → transparent at top
+       Text lives in the lower third of the frame
+    ═══════════════════════════════════════════════ */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 680px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      color: var(--white);
+      overflow: hidden;
+      padding-top: 80px; /* clear fixed navbar */
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.6s ease-in-out;
+      will-change: opacity;
+    }
+
+    .hero-slide.active { opacity: 1; }
+
+    /* Dual gradient — left-to-right dark zone for text + bottom lift */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to right,
+          rgba(6, 14, 26, 0.80) 0%,
+          rgba(6, 14, 26, 0.52) 38%,
+          rgba(6, 14, 26, 0.10) 65%,
+          rgba(6, 14, 26, 0.00) 100%
+        ),
+        linear-gradient(
+          to top,
+          rgba(6, 14, 26, 0.55) 0%,
+          rgba(6, 14, 26, 0.00) 52%
+        );
+      z-index: 1;
+    }
+
+    /* Left text column */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: left;
+      max-width: 520px;
+      padding: 0 0 72px 48px;
+      animation: heroReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+      flex-shrink: 0;
+    }
+
+    @keyframes heroReveal {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Location label — readable, sets scene */
+    .hero-location {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.50);
+      margin-bottom: 22px;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.30);
+    }
+
+    /* Hero headline — Playfair Display, premium editorial serif */
+    .hero-content h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.3rem, 5.2vw, 4rem);
+      font-weight: 400;
+      line-height: 1.14;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+      color: #ffffff;
+      text-shadow: 0 2px 28px rgba(0,0,0,0.55), 0 1px 6px rgba(0,0,0,0.40);
+    }
+
+    .hero-content h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: inherit;
+      display: block;
+    }
+
+    /* Subline — quiet, refined, lets headline dominate */
+    .hero-sub {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 36px;
+      line-height: 1.72;
+      letter-spacing: 0.015em;
+      max-width: 440px;
+    }
+
+    /* Buttons — left-aligned row */
+    .hero-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      background: var(--amber);
+      color: var(--white);
+      padding: 15px 40px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 4px 24px rgba(200,98,26,0.45);
+    }
+
+    .btn-hero-primary:hover {
+      background: var(--amber-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(200,98,26,0.55);
+    }
+
+    .btn-hero-ghost {
+      color: rgba(255,255,255,0.82);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.01em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.25s, gap 0.2s;
+    }
+
+    /* ── HERO DONATION BOX ── */
+    .hero-donate-box {
+      position: relative;
+      z-index: 2;
+      background: rgba(255,255,255,0.97);
+      border-radius: 14px;
+      padding: 28px 28px 24px;
+      width: 340px;
+      flex-shrink: 0;
+      margin: 0 48px 72px 0;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.22);
+      animation: heroReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+    }
+
+    .hdb-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--subtext);
+      margin-bottom: 14px;
+    }
+
+    /* Tab row — Monthly / One-Time */
+    .hdb-tabs {
+      display: flex;
+      background: #f0f2f5;
+      border-radius: 8px;
+      padding: 4px;
+      margin-bottom: 18px;
+      gap: 4px;
+    }
+
+    .hdb-tab {
+      flex: 1;
+      padding: 8px 0;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      background: transparent;
+      color: var(--subtext);
+    }
+
+    .hdb-tab.active {
+      background: var(--white);
+      color: var(--text);
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    }
+
+    /* Amount grid */
+    .hdb-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--subtext);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .hdb-amounts {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .hdb-amt {
+      padding: 10px 6px;
+      border: 2px solid #e0e6ed;
+      border-radius: 8px;
+      background: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      text-align: center;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+      line-height: 1.2;
+    }
+
+    .hdb-amt span {
+      display: block;
+      font-size: 0.62rem;
+      font-weight: 400;
+      color: var(--subtext);
+      margin-top: 2px;
+    }
+
+    .hdb-amt:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .hdb-amt.selected {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--white);
+    }
+
+    .hdb-amt.selected span { color: rgba(255,255,255,0.75); }
+
+    /* Other amount row */
+    .hdb-other {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .hdb-other .hdb-amt { margin: 0; }
+
+    /* Impact line */
+    .hdb-impact {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.8rem;
+      color: var(--subtext);
+      margin-bottom: 16px;
+      padding: 10px 12px;
+      background: var(--blue-light);
+      border-radius: 8px;
+      min-height: 38px;
+    }
+
+    .hdb-impact svg {
+      width: 16px; height: 16px;
+      flex-shrink: 0;
+      color: var(--blue);
+    }
+
+    /* CTA button */
+    .hdb-cta {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: var(--amber);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .hdb-cta:hover {
+      background: var(--amber-hover);
+      transform: translateY(-1px);
+    }
+
+    .hdb-footer {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.74rem;
+      color: var(--subtext);
+    }
+
+    /* Scroll hint at very bottom */
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      animation: scrollBounce 2.6s ease-in-out infinite;
+    }
+
+    .hero-scroll svg { width: 16px; height: 16px; }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.4; }
+      50%       { transform: translateX(-50%) translateY(7px); opacity: 0.7; }
+    }
+
+    /* Thin amber accent line at the very bottom of hero */
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, transparent, var(--amber), transparent);
+      z-index: 3;
+    }
+
+    /* ═══════════════════════════════════════════════
+       STORIES FROM THE GROUND
+    ═══════════════════════════════════════════════ */
+    #stories {
+      padding: 56px 48px 72px;
+      background: var(--bg-warm);
+    }
+
+    .stories-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .stories-header {
+      text-align: left;
+      max-width: 100%;
+      margin: 0 0 44px;
+      padding-left: 0;
+    }
+
+    /* Accent line — editorial left-aligned style */
+    .stories-header::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 3px;
+      background: var(--blue);
+      margin-bottom: 18px;
+      border-radius: 2px;
+    }
+
+    .stories-header .section-eyebrow {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .stories-header h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.5rem, 2.6vw, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.005em;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .stories-header p {
+      font-size: 0.93rem;
+      color: var(--subtext);
+      font-style: italic;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .stories-grid {
+      max-width: 100%;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .story-card {
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 14px rgba(0,0,0,0.07);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 32px rgba(13,92,138,0.11);
+    }
+
+    .story-card-img {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .story-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .story-card:hover .story-card-img img {
+      transform: scale(1.04);
+    }
+
+    .story-card-body {
+      padding: 20px 22px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .story-card-tag {
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      margin-bottom: 7px;
+      display: block;
+      opacity: 0.82;
+    }
+
+    .story-card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 9px;
+      line-height: 1.32;
+    }
+
+    .story-card-text {
+      font-size: 0.875rem;
+      color: var(--subtext);
+      line-height: 1.76;
+      flex: 1;
+      margin-bottom: 18px;
+    }
+
+    .story-card-btn, .story-learn-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: gap 0.2s, color 0.2s;
+      align-self: flex-start;
+      border-bottom: 1.5px solid transparent;
+      padding-bottom: 1px;
+    }
+
+    .story-card-btn:hover, .story-learn-btn:hover {
+      gap: 9px;
+      color: var(--blue-mid);
+      border-bottom-color: var(--blue-mid);
+    }
+
+    @media (max-width: 900px) {
+      .stories-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+    }
+    @media (max-width: 600px) {
+      #stories { padding: 56px 24px 64px; }
+      .stories-grid { grid-template-columns: 1fr; gap: 16px; }
+      .story-card-img { height: 260px; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       IMPACT BAR — logo blue background
+    ═══════════════════════════════════════════════ */
+    #impact-bar {
+      background: var(--blue);
+      padding: 64px 48px;
+    }
+
+    .impact-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 32px;
+      text-align: center;
+    }
+
+    .impact-stat { color: var(--white); }
+
+    .impact-stat .stat-icon {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      display: block;
+      opacity: 0.8;
+    }
+
+    .impact-stat .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1;
+      display: inline;
+      letter-spacing: -0.03em;
+    }
+
+    .impact-stat .stat-row {
+      display: block;
+      line-height: 1;
+      margin-bottom: 0;
+    }
+
+    .impact-stat .stat-label {
+      font-size: 0.82rem;
+      font-weight: 400;
+      opacity: 0.72;
+      margin-top: 8px;
+      display: block;
+      letter-spacing: 0.01em;
+    }
+
+    .impact-tagline {
+      text-align: center;
+      color: rgba(255,255,255,0.52);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      font-weight: 400;
+      margin-top: 28px;
+      letter-spacing: 0.01em;
+    }
+
+    /* ═══════════════════════════════════════════════
+       SHARED SECTION UTILITIES
+    ═══════════════════════════════════════════════ */
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      margin-bottom: 12px;
+      opacity: 0.82;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.65rem, 2.8vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.22;
+      letter-spacing: -0.005em;
+      color: #1a2332;
+      margin-bottom: 18px;
+    }
+
+    .section-body {
+      font-size: 1rem;
+      line-height: 1.82;
+      color: var(--subtext);
+      margin-bottom: 1.1em;
+    }
+
+    .section-body strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto 56px;
+    }
+
+    .section-header .section-body {
+      margin-bottom: 0;
+    }
+
+    .text-link {
+      color: var(--blue-mid);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.01em;
+      transition: gap 0.2s, color 0.2s;
+    }
+
+    .text-link:hover {
+      gap: 10px;
+      color: var(--blue);
+    }
+
+    /* ═══════════════════════════════════════════════
+       PROBLEM STATEMENT
+    ═══════════════════════════════════════════════ */
+    #problem {
+      padding: 80px 48px;
+      background: var(--bg-warm);
+      text-align: center;
+    }
+
+    .problem-inner {
+      max-width: 640px;
+      margin: auto;
+    }
+
+    .founder-quote {
+      margin-top: 52px;
+      background: var(--blue-light);
+      border-left: 3px solid var(--blue);
+      padding: 32px 36px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      text-align: left;
+    }
+
+    .founder-quote p {
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--blue);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .founder-quote cite {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--subtext);
+      font-style: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════════════
+       WHO WE ARE
+    ═══════════════════════════════════════════════ */
+    #who {
+      padding: 88px 48px;
+      background: #eef0f4;
+    }
+
+    .two-col {
+      max-width: 1160px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .col-img { position: relative; }
+
+    .col-img img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+      display: block;
+    }
+
+    .img-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--amber);
+      color: var(--white);
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(200,98,26,0.3);
+      line-height: 1.5;
+    }
+
+    .img-badge strong {
+      display: block;
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .col-text blockquote {
+      border-left: 3px solid var(--blue-mid);
+      padding-left: 18px;
+      font-style: italic;
+      color: var(--blue);
+      margin: 24px 0;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* ═══════════════════════════════════════════════
+       PROGRAMS
+    ═══════════════════════════════════════════════ */
+    #programs {
+      padding: 88px 48px;
+      background: var(--white);
+    }
+
+    .programs-grid {
+      max-width: 1160px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .program-card {
+      background: var(--bg-soft);
+      border-radius: var(--radius);
+      padding: 32px 26px;
+      border-left: 3px solid var(--blue);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .program-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 32px rgba(13,92,138,0.1);
+    }
+
+    .program-card .p-icon {
+      font-size: 1.7rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .program-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .program-card p {
+      font-size: 0.9rem;
+      color: var(--subtext);
+      line-height: 1.78;
+    }
+
+    .programs-cta {
+      text-align: center;
+      margin-top: 44px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       FULL-BLEED IMAGE STRIP
+       Parallax pause between programs and donate
+    ═══════════════════════════════════════════════ */
+    #image-strip {
+      width: 100%;
+      height: 50vh;
+      min-height: 300px;
+      background-image: url('https://i.postimg.cc/NfSXYKzF/IMG-20250503-162513-413.jpg');
+      background-size: cover;
+      background-position: center 35%;
+      background-attachment: fixed;
+    }
+
+    /* ═══════════════════════════════════════════════
+       DONATION SECTION
+    ═══════════════════════════════════════════════ */
+    #donate {
+      padding: 96px 48px;
+      background: var(--bg-soft);
+    }
+
+    .donate-grid {
+      max-width: 1160px;
+      margin: 52px auto 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+    }
+
+    .donate-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 38px 32px;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      position: relative;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border-top: 3px solid transparent;
+    }
+
+    .donate-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 44px rgba(0,0,0,0.1);
+    }
+
+    /* Sponsor card — logo blue */
+    .donate-card.sponsor { border-top-color: var(--blue); }
+
+    /* Featured card — amber */
+    .donate-card.featured { border-top-color: var(--amber); }
+
+    .donate-card.featured::before {
+      content: "Most Popular";
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--amber);
+      color: var(--white);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+    }
+
+    .donate-card .amount {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    /* Sponsor amount in logo blue */
+    .donate-card.sponsor .amount { color: var(--blue); }
+
+    /* Other amounts in amber */
+    .donate-card .amount { color: var(--amber); }
+    .donate-card.sponsor .amount { color: var(--blue); }
+
+    .donate-card .frequency {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--subtext);
+      margin-bottom: 16px;
+      letter-spacing: 0.03em;
+    }
+
+    .donate-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .donate-card p {
+      font-size: 0.88rem;
+      color: var(--subtext);
+      line-height: 1.78;
+      margin-bottom: 28px;
+    }
+
+    .btn-donate {
+      display: block;
+      padding: 13px 28px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.01em;
+      transition: background 0.25s, transform 0.2s;
+      width: 100%;
+      text-align: center;
+      color: var(--white);
+    }
+
+    /* Sponsor button — logo blue */
+    .btn-donate-blue { background: var(--blue); }
+    .btn-donate-blue:hover { background: var(--blue-mid); transform: translateY(-1px); }
+
+    /* Other donate buttons — amber */
+    .btn-donate-amber { background: var(--amber); }
+    .btn-donate-amber:hover { background: var(--amber-hover); transform: translateY(-1px); }
+
+    .donate-alt {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 0.88rem;
+      color: var(--subtext);
+    }
+
+    .donate-alt a {
+      color: var(--blue-mid);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .trust-signals {
+      max-width: 820px;
+      margin: 48px auto 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--subtext);
+    }
+
+    .trust-item .check {
+      width: 19px; height: 19px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.6rem;
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════════════════
+       GALLERY — 9 images, editorial 2+1 grid
+    ═══════════════════════════════════════════════ */
+    #gallery {
+      padding: 88px 48px;
+      background: var(--white);
+    }
+
+    .gallery-editorial {
+      max-width: 1160px;
+      margin: 48px auto 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 260px 260px 260px;
+      gap: 14px;
+    }
+
+    .gallery-editorial img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 8px;
+      cursor: pointer;
+      object-fit: cover;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-editorial img:hover {
+      transform: scale(1.025);
+      box-shadow: 0 10px 36px rgba(13,92,138,0.18);
+    }
+
+    /* Feature image: column 1, spans all 3 rows */
+    .gallery-feature {
+      grid-column: 1;
+      grid-row: 1 / 4;
+    }
+
+    .gallery-footer {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 92%;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 0 80px rgba(0,0,0,0.5);
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 20px; right: 28px;
+      color: rgba(255,255,255,0.7);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+      font-weight: 300;
+    }
+
+    #lightbox-close:hover { color: var(--white); }
+
+    /* ═══════════════════════════════════════════════
+       TESTIMONIAL
+    ═══════════════════════════════════════════════ */
+    #testimonial {
+      padding: 88px 48px;
+      background: var(--amber-light);
+    }
+
+    .testimonial-inner {
+      max-width: 720px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .quote-mark {
+      font-size: 6rem;
+      font-weight: 800;
+      line-height: 0.6;
+      color: var(--amber);
+      opacity: 0.3;
+      display: block;
+      margin-bottom: 20px;
+      letter-spacing: -0.05em;
+    }
+
+    .testimonial-inner blockquote {
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .testimonial-inner cite {
+      font-style: normal;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--subtext);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .testimonial-inner cite span {
+      display: block;
+      font-weight: 400;
+      font-size: 0.78rem;
+      margin-top: 4px;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--subtext);
+      opacity: 0.8;
+    }
+
+    /* ═══════════════════════════════════════════════
+       EMAIL STRIP
+    ═══════════════════════════════════════════════ */
+    #email-strip {
+      padding: 64px 48px;
+      background: var(--blue);
+      text-align: center;
+    }
+
+    #email-strip h3 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    #email-strip p {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+    }
+
+    .email-form {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      max-width: 480px;
+      margin: auto;
+    }
+
+    .email-form input {
+      flex: 1;
+      min-width: 220px;
+      padding: 13px 20px;
+      border: none;
+      border-radius: var(--radius-pill);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      color: var(--text);
+    }
+
+    .email-form input::placeholder { color: #9aa8b4; }
+
+    .email-form button {
+      background: var(--amber);
+      color: var(--white);
+      border: none;
+      padding: 13px 26px;
+      border-radius: var(--radius-pill);
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: background 0.25s;
+      white-space: nowrap;
+    }
+
+    .email-form button:hover { background: var(--amber-hover); }
+
+    .email-note {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.42);
+      margin-top: 14px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════ */
+    footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 72px 48px 32px;
+      border-top: 4px solid var(--blue);
+    }
+
+    .footer-grid {
+      max-width: 1160px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 52px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer-brand img {
+      height: 64px;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .footer-brand p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.48);
+      line-height: 1.75;
+      margin-bottom: 22px;
+    }
+
+    .footer-social { display: flex; gap: 10px; }
+
+    .footer-social a {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s;
+      text-decoration: none;
+    }
+
+    .footer-social a:hover { background: var(--blue-mid); }
+    .footer-social img { width: 17px; height: 17px; filter: brightness(10); }
+
+    .footer-col h4 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 18px;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+
+    .footer-col ul li a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover { color: var(--white); }
+
+    .footer-contact p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .footer-contact a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-contact a:hover { color: var(--white); }
+
+    .footer-bottom {
+      max-width: 1160px;
+      margin: 28px auto 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-poem {
+      font-style: italic;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.28);
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.25);
+      text-align: right;
+    }
+
+    /* ═══════════════════════════════════════════════
+       GO UP
+    ═══════════════════════════════════════════════ */
+    #go-up {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      background: var(--blue);
+      color: var(--white);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 16px rgba(13,92,138,0.4);
+      z-index: 998;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    #go-up:hover { background: var(--blue-mid); transform: translateY(-2px); }
+    #go-up.visible { display: flex; }
+
+    /* ═══════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .two-col { gap: 56px; }
+      .gallery-editorial { grid-template-rows: 220px 220px 220px; }
+      .hero-donate-box { width: 300px; padding: 22px 20px 18px; margin-right: 32px; }
+    }
+
+    @media (max-width: 900px) {
+      .stories-grid { grid-template-columns: 1fr 1fr; }
+      .two-col { grid-template-columns: 1fr; gap: 48px; }
+      .img-badge { right: 16px; bottom: 16px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .gallery-editorial {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 200px 200px;
+      }
+      .gallery-feature { grid-row: 1; grid-column: 1 / 3; }
+      #image-strip { background-attachment: scroll; }
+      /* On tablet, stack hero vertically — hide donate box, show content full width */
+      #hero { align-items: flex-end; justify-content: flex-start; }
+      .hero-donate-box { display: none; }
+      .hero-content { max-width: 100%; padding: 0 32px 72px; }
+    }
+
+    @media (max-width: 768px) {
+      #navbar { padding: 14px 20px; }
+      #navbar.scrolled { padding: 10px 20px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      #stories { padding: 52px 20px 60px; }
+      .stories-grid { grid-template-columns: 1fr; gap: 16px; }
+      .hero-content { padding: 0 24px 80px; max-width: 100%; }
+      #problem { padding: 80px 24px; }
+      .problem-inner { max-width: 100%; }
+      #who { padding: 72px 24px; }
+      #programs { padding: 72px 24px; }
+      #donate { padding: 72px 24px; }
+      #gallery { padding: 72px 24px; }
+      #testimonial { padding: 72px 24px; }
+      #email-strip { padding: 56px 24px; }
+      footer { padding: 60px 24px 28px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      #impact-bar { padding: 52px 24px; }
+      .impact-stat .stat-number { font-size: 2.6rem; }
+      .gallery-editorial {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 180px 180px 180px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 { font-size: 2.4rem; }
+      .hero-content { padding: 0 20px 80px; }
+      .donate-grid { grid-template-columns: 1fr; }
+      #impact-bar { padding: 44px 20px; }
+      .impact-stat .stat-number { font-size: 2.2rem; }
+      .gallery-editorial {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-feature { grid-column: 1; grid-row: 1; height: 260px; }
+      .gallery-editorial img { height: 200px; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       BREVO FORM OVERRIDES
+       Forces Brevo form to match our Inter/blue/amber
+       design system inside the teal email-strip section
+    ═══════════════════════════════════════════════ */
+    @font-face {
+      font-display: block; font-family: Roboto;
+      src: url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/7529907e9eaf8ebb5220c5f9850e3811.woff2) format("woff2"),
+           url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/25c678feafdc175a70922a116c9be3e7.woff) format("woff");
+    }
+    @font-face {
+      font-display: fallback; font-family: Roboto; font-weight: 600;
+      src: url(https://assets.brevo.com/font/Roboto/Latin/medium/normal/6e9caeeafb1f3491be3e32744bc30440.woff2) format("woff2"),
+           url(https://assets.brevo.com/font/Roboto/Latin/medium/normal/71501f0d8d5aa95960f6475d5487d4c2.woff) format("woff");
+    }
+    @font-face {
+      font-display: fallback; font-family: Roboto; font-weight: 700;
+      src: url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/3ef7cf158f310cf752d5ad08cd0e7e60.woff2) format("woff2"),
+           url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/ece3a1d82f18b60bcce0211725c476aa.woff) format("woff");
+    }
+
+    /* Strip Brevo's outer grey background */
+    #email-strip .sib-form {
+      background-color: transparent !important;
+      padding: 0 !important;
+    }
+
+    /* Card: clean white, rounded, constrained width */
+    #email-strip #sib-form-container,
+    #email-strip #sib-container {
+      background-color: #ffffff !important;
+      border: none !important;
+      border-radius: 12px !important;
+      max-width: 520px !important;
+      margin: 0 auto !important;
+      padding: 36px 36px 28px !important;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18) !important;
+    }
+
+    /* Heading inside card */
+    #email-strip .sib-form-block p {
+      font-family: 'Inter', sans-serif !important;
+      color: #17202a !important;
+    }
+
+    /* Override heading size */
+    #email-strip .sib-form-block[style*="font-size:32px"] p {
+      font-size: 1.4rem !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.02em !important;
+      line-height: 1.2 !important;
+    }
+
+    /* Override description size */
+    #email-strip .sib-form-block[style*="font-size:16px"] p {
+      font-size: 0.92rem !important;
+      font-weight: 400 !important;
+      color: #475a6b !important;
+      line-height: 1.6 !important;
+    }
+
+    /* Label */
+    #email-strip .entry__label {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 0.82rem !important;
+      font-weight: 600 !important;
+      color: #17202a !important;
+      letter-spacing: 0.01em !important;
+    }
+
+    /* Input field */
+    #email-strip .input {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 0.92rem !important;
+      border: 2px solid #d0dae4 !important;
+      border-radius: 8px !important;
+      padding: 11px 14px !important;
+      color: #17202a !important;
+      transition: border-color 0.2s !important;
+    }
+    #email-strip .input:focus {
+      border-color: #0d5c8a !important;
+      outline: none !important;
+    }
+
+    /* Submit button — amber to match our CTAs */
+    #email-strip .sib-form-block__button {
+      font-family: 'Inter', sans-serif !important;
+      background-color: #c8621a !important;
+      border-radius: 8px !important;
+      font-size: 0.92rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.01em !important;
+      padding: 13px 28px !important;
+      width: 100% !important;
+      transition: background 0.25s !important;
+      border: none !important;
+    }
+    #email-strip .sib-form-block__button:hover {
+      background-color: #a84e14 !important;
+    }
+
+    /* Helper text below input */
+    #email-strip .entry__specification {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 0.72rem !important;
+      color: #8390A4 !important;
+    }
+
+    /* Error label */
+    #email-strip .entry__error {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 0.8rem !important;
+    }
+
+    #sib-container input:-ms-input-placeholder { text-align:left; font-family:Helvetica,sans-serif; color:#c0ccda; }
+    #sib-container input::placeholder { text-align:left; font-family:Helvetica,sans-serif; color:#c0ccda; }
+    #sib-container a { text-decoration:underline; color:#2BB2FC; }
+
   </style>
 </head>
 <body id="top">
 
-  <header>
-    <div class="logo">
-      <img src="https://i.postimg.cc/tgDzS2HG/dove-love-charity-stamp.png" alt="Dove Love Logo">
+  <!-- ── NAVBAR ── -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="https://i.postimg.cc/tgDzS2HG/dove-love-charity-stamp.png" alt="Dove Love Charity Organization">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="getinvolved.html">Get Involved</a></li>
+      <li><a href="contactus.html">Contact</a></li>
+      <li><a href="https://www.mchanga.africa/fundraiser/84527" target="_blank" rel="noopener noreferrer" class="nav-donate-btn">Donate Now</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
     </div>
-    <div class="menu" id="menuBtn">≡</div>
-    <div class="dropdown" id="dropdownMenu">
-      <a href="index.html">Home</a>
-      <a href="aboutus.html">About Us</a>
-      <a href="programs.html">Programs</a>
-      <a href="getinvolved.html">Get Involved</a>
-      <a href="contactus.html">Contact Us</a>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="aboutus.html">About Us</a>
+    <a href="programs.html">Programs</a>
+    <a href="getinvolved.html">Get Involved</a>
+    <a href="contactus.html">Contact</a>
+    <a href="https://www.mchanga.africa/fundraiser/84527" target="_blank" rel="noopener noreferrer" class="donate-mobile">Donate Now</a>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="hero-slide active" style="background-image:url('https://i.postimg.cc/zvL7JFgw/Screenshot-20250901-220756-Gallery.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('https://i.postimg.cc/cJRKDjRF/20250502-175835.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('https://i.postimg.cc/sxN1QRzg/20250502-180136.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('https://i.postimg.cc/50pXJCkv/20250502-180015.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('https://i.postimg.cc/zv9j3HCs/Screenshot-20250901-221038-Gallery.jpg')"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-location">Dove Love Charity Organisation</span>
+      <h1>Every Child Deserves Love, Safety and a Future.</h1>
+      <p class="hero-sub">50 children. One mission. Your love changes everything.</p>
     </div>
-  </header>
 
-  <div class="hero" id="hero">
-  <div class="hero-content">
-    <h1>Welcome to Dove Love Charity Organization</h1>
-    <p>Bringing hope, love, and a future to orphaned children and vulnerable communities in Uganda.</p>
-  </div>
-</div>
-
-  <section id="about">
-    <h2>Who we are</h2>
-    <p>
-      Dove Love Charity Organization is a grassroots non profit based in Uganda, committed to uplifting orphaned and vulnerable children. We believe every child deserves love, education, and the chance to build a brighter future. Initiated by Andrew alongside a colleague, out of a personal journey of pain and hope, we operate with deep community roots and a clear mission to care, educate, and empower.
-    </p>
+    <!-- Donation box — right side of hero -->
+    <div class="hero-donate-box" id="heroDonateBox">
+      <p class="hdb-title">Make a Donation</p>
+      <div class="hdb-tabs">
+        <button class="hdb-tab active" onclick="switchTab('monthly', this)">Monthly</button>
+        <button class="hdb-tab" onclick="switchTab('once', this)">One-Time</button>
+      </div>
+      <span class="hdb-label" id="hdb-freq-label">Select an amount per month</span>
+      <div class="hdb-amounts">
+        <button class="hdb-amt" onclick="selectAmt(this, 10)">$10 <span id="unit-10">USD/mo</span></button>
+        <button class="hdb-amt" onclick="selectAmt(this, 20)">$20 <span id="unit-20">USD/mo</span></button>
+        <button class="hdb-amt selected" onclick="selectAmt(this, 30)">$30 <span id="unit-30">USD/mo</span></button>
+      </div>
+      <div class="hdb-other">
+        <button class="hdb-amt" onclick="selectAmt(this, 50)">$50 <span id="unit-50">USD/mo</span></button>
+        <button class="hdb-amt" onclick="selectAmt(this, 100)">$100 <span id="unit-100">USD/mo</span></button>
+      </div>
+      <div class="hdb-impact">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <span id="hdb-impact-text">Sponsors one child with meals &amp; education for a month</span>
+      </div>
+      <a href="https://www.mchanga.africa/fundraiser/84527" target="_blank" rel="noopener noreferrer" class="hdb-cta" id="hdb-cta-btn">Give $30 / month</a>
+      <p class="hdb-footer">Secure &middot; Transparent &middot; 100% to programs</p>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M7 10l5 5 5-5"/>
+      </svg>
+      Scroll
+    </div>
   </section>
 
-  <section id="what" style="background-color: #f0f9f8;">
-    <h2>What we do</h2>
-    <p>
-      We care for over <strong>50 children</strong> at our sanctuary, and the number continues to grow. We provide shelter, basic education, and emotional support. Additionally, we've reached and helped over <strong>200 other children</strong> by providing school fees, clothes, shoes, and school materials like books and pencils. We've also supported over <strong>30 elderly</strong> people with food and care. Our mission is holistic we nurture, teach, and uplift.
-    </p>
+
+  <!-- ── STORIES FROM THE GROUND ── -->
+  <section id="stories">
+    <div class="stories-inner">
+    <div class="stories-header">
+      <span class="section-eyebrow">From Uganda</span>
+      <h2>Stories from the Ground</h2>
+      <p>Real lives. Real moments. Real impact.</p>
+    </div>
+    <div class="stories-grid">
+
+      <!-- Story 1 — Kisakye -->
+      <div class="story-card">
+        <img class="story-card-img" src="https://i.postimg.cc/NfKBPjSx/kisakye_gallery_1.jpg" alt="Kisakye and his mother" loading="lazy">
+        <div class="story-card-body">
+          <span class="story-card-tag">Child in Need</span>
+          <h3>Kisakye's Story</h3>
+          <p>Kisakye is an 8-year-old boy who can no longer move, sit, or care for himself after an illness changed his life. His mother is doing everything she can, but they lack the support needed.</p>
+          <a href="kisakye.html" class="story-learn-btn">Learn More &#8594;</a>
+        </div>
+      </div>
+
+      <!-- Story 2 — Land & Shelter -->
+      <div class="story-card">
+        <img class="story-card-img" src="https://i.postimg.cc/Xqz37RGr/buildning_header.jpg" alt="Children at Dove Love compound" loading="lazy">
+        <div class="story-card-body">
+          <span class="story-card-tag">Infrastructure</span>
+          <h3>Building a Place to Call Home</h3>
+          <p>Dove Love Charity currently operates from temporary shelters on rented land. We are working toward securing permanent land and building a stable, safe home for the children.</p>
+          <a href="land.html" class="story-learn-btn">Learn More &#8594;</a>
+        </div>
+      </div>
+
+      <!-- Story 3 — Clean Water -->
+      <div class="story-card">
+        <img class="story-card-img" src="https://i.postimg.cc/QCthD8MY/water_project_header.jpg" alt="Children at Lake Victoria collecting water" loading="lazy">
+        <div class="story-card-body">
+          <span class="story-card-tag">Clean Water</span>
+          <h3>Access to Safe and Clean Water</h3>
+          <p>Many communities on island areas rely on unsafe water sources. This has led to frequent cases of waterborne diseases. We are working toward a safe, reliable water source.</p>
+          <a href="water.html" class="story-learn-btn">Learn More &#8594;</a>
+        </div>
+      </div>
+
+    </div>
+    </div><!-- /.stories-inner -->
   </section>
 
-  <section id="impact">
-    <h2>Our impact</h2>
-    <p>
-      Since our founding, Dove Love has brought light to  over <strong>300</strong> lives. We’ve enrolled <strong>dozens</strong> of children in school, provided thousands of meals, and created a space of love and belonging. Every action we take is made possible by compassionate hearts like yours.
-    </p>
+  <!-- ── IMPACT BAR ── -->
+  <section id="impact-bar">
+    <div class="impact-inner">
+      <div class="impact-stat">
+        <span class="stat-icon">&#127968;</span>
+        <div class="stat-row"><span class="stat-number" data-target="50">0</span><span class="stat-number">+</span></div>
+        <span class="stat-label">Children in our care</span>
+      </div>
+      <div class="impact-stat">
+        <span class="stat-icon">&#128218;</span>
+        <div class="stat-row"><span class="stat-number" data-target="200">0</span><span class="stat-number">+</span></div>
+        <span class="stat-label">Children supported with school fees</span>
+      </div>
+      <div class="impact-stat">
+        <span class="stat-icon">&#10084;</span>
+        <div class="stat-row"><span class="stat-number" data-target="30">0</span><span class="stat-number">+</span></div>
+        <span class="stat-label">Elderly people served</span>
+      </div>
+      <div class="impact-stat">
+        <span class="stat-icon">&#127757;</span>
+        <div class="stat-row"><span class="stat-number" data-target="300">0</span><span class="stat-number">+</span></div>
+        <span class="stat-label">Lives touched since founding</span>
+      </div>
+    </div>
+    <p class="impact-tagline">Every number is a name. Every name is a life changed.</p>
   </section>
 
-  <section style="background-color: #f0f9f8;">
-    <h2>Be part</h2>
-    <p>
-      Become part of the Dove Love family. You can support by donating, sponsoring a child, volunteering, or partnering with us to reach more communities. No act is too small to make a difference.
-    </p>
-  </section>
-<!-- Gallery Section -->
-<section id="gallery">
-  <h2>Gallery</h2>
-<p class="gallery-note">Click on any image to view it in full size</p>
-  <div class="collage-gallery">
-    <img src="https://i.postimg.cc/zvL7JFgw/Screenshot-20250901-220756-Gallery.jpg" alt="Gallery image 1" class="collage-img img1">
-    <img src="https://i.postimg.cc/zv9j3HCs/Screenshot-20250901-221038-Gallery.jpg" alt="Gallery image 2" class="collage-img img2">
-    <img src="https://i.postimg.cc/G3VcMGfM/Screenshot-20250503-224408-Instagram.jpg" alt="Gallery image 3" class="collage-img img3">
-    <img src="https://i.postimg.cc/zv9j3HCs/Screenshot-20250901-221038-Gallery.jpg" alt="Gallery image 4" class="collage-img img4">
-    <img src="https://i.postimg.cc/DyGQBg3s/Screenshot-20250901-223722-Gallery.jpg" alt="Gallery image 5" class="collage-img img5">
-    <img src="https://i.postimg.cc/DyGQBg3s/Screenshot-20250901-223722-Gallery.jpg" alt="Gallery image 6" class="collage-img img6">
-    <img src="https://i.postimg.cc/Prx79Rgh/Screenshot-20250503-223744-Gallery.jpg" alt="Gallery image 7" class="collage-img img7">
-    <img src="https://i.postimg.cc/DyGQBg3s/Screenshot-20250901-223722-Gallery.jpg" alt="Gallery image 8" class="collage-img img8">
-    <img src="https://i.postimg.cc/Y28VXHyb/Screenshot-20250503-223326-Gallery.jpg" alt="Gallery image 9" class="collage-img img9">
-    <img src="https://i.postimg.cc/zv9j3HCs/Screenshot-20250901-221038-Gallery.jpg" alt="Gallery image 10" class="collage-img img10">
-    <img src="https://i.postimg.cc/zB7dPCpV/Screenshot-20250503-222842-Gallery.jpg" alt="Gallery image 11" class="collage-img img11">
-    <img src="https://i.postimg.cc/NfSXYKzF/IMG-20250503-162513-413.jpg" alt="Gallery image 12" class="collage-img img12">
-    <img src="https://i.postimg.cc/MpBQGzCD/IMG-20250503-162506-417.jpg" alt="Gallery image 13" class="collage-img img13">
-    <img src="https://i.postimg.cc/2yH4YVK3/Screenshot-20250419-015306-Linked-In.jpg" alt="Gallery image 14" class="collage-img img14">
-    <img src="https://i.postimg.cc/Y2Zf6PZM/Screenshot-20250901-223747-Gallery.jpg" alt="Gallery image 15" class="collage-img img15">
-    <img src="https://i.postimg.cc/bJ9x660x/Screenshot-20250419-013734-Gallery.jpg" alt="Gallery image 16" class="collage-img img16">
-    <img src="https://i.postimg.cc/0yh0rK2w/Screenshot-20250419-013650-Gallery.jpg" alt="Gallery image 17" class="collage-img img17">
-    <img src="https://i.postimg.cc/VNMBtsdH/Screenshot-20250419-013642-Gallery.jpg" alt="Gallery image 18" class="collage-img img18">
-    <img src="https://i.postimg.cc/Df5QLMwF/Screenshot-20250419-013402-Gallery.jpg" alt="Gallery image 19" class="collage-img img19">
-    <img src="https://i.postimg.cc/7Y63Vn5z/Screenshot-20250419-013353-Gallery.jpg" alt="Gallery image 20" class="collage-img img20">
-    <img src="https://i.postimg.cc/VLVjH0tV/Screenshot-20250419-013315-Gallery.jpg" alt="Gallery image 21" class="collage-img img21">
-    <img src="https://i.postimg.cc/FzMyhf37/Screenshot-20250901-223732-Gallery.jpg" alt="Gallery image 22" class="collage-img img22">
-    <img src="https://i.postimg.cc/4N9PqwZs/Screenshot-20250901-220651-Gallery.jpg" alt="Gallery image 23" class="collage-img img23">
-    <img src="https://i.postimg.cc/N0hRQhp8/Screenshot-20250419-013254-Gallery.jpg" alt="Gallery image 24" class="collage-img img24">
-    <img src="https://i.postimg.cc/yYgKc2yS/Screenshot-20250419-014908-Linked-In.jpg" alt="Gallery image 25" class="collage-img img25">
-  </div>
-</section>
 
-<!-- Lightbox -->
-<div id="lightbox" onclick="closeLightbox()">
-  <img id="lightbox-img" src="" alt="Full Image">
-</div>
-
-  <div class="cta">
-    <h3>Join our mission</h3>
-    <p>Together we can make a lasting difference in a child’s life.</p>
-    <button>Make a diffirence</button>
-  </div>
-
-  <a href="#top" class="go-up" id="goUpBtn" title="Back to top">^</a>
-
- <!-- Footer Section -->
-<footer style="background-color: #111; padding: 40px 20px; color: #fff;">
-  <div style="max-width: 1000px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
-    
-    <!-- Organization Info -->
-    <div style="flex: 1; min-width: 250px;">
-      <h2 style="font-size: 1.5rem; margin-bottom: 10px;">Dove Love Charity Organization</h2>
-      <p style="font-size: 1rem; color: #ccc;">
-        Bringing love to children through community support and education
+  <!-- ── PROBLEM STATEMENT ── -->
+  <section id="problem">
+    <div class="problem-inner">
+      <span class="section-eyebrow">Why We Exist</span>
+      <h2 class="section-title">Children in East Africa<br>Are Being Left Behind</h2>
+      <p class="section-body">
+        When the government restricted fishing on Lake Victoria, entire communities collapsed overnight. Families who had survived for generations lost their only livelihood. Unable to provide, some parents disappeared. Others were taken by illness. Children were left alone.
       </p>
+      <p class="section-body">
+        Today, HIV, poverty, and abandonment continue to orphan children across East Africa. They have no clean water, no electricity, and no safe place to sleep. They are forgotten unless someone chooses to remember them.
+      </p>
+      <div class="founder-quote">
+        <p>"I was that child. I know what it means to be forgotten. I walked 10 kilometres to school on one meal a day. That is why I came back so no child on this island has to face that alone."</p>
+        <cite>Andrew Odoi &nbsp;&middot;&nbsp; Co-Founder, Dove Love Charity Organization</cite>
+      </div>
     </div>
+  </section>
 
-    <!-- Contact Info -->
-    <div style="flex: 1; min-width: 250px;">
-      <h3>Contact Us</h3>
-      <p>Phone: +256 777 476 617</p>
-      <p>Email: <a href="mailto:info@dovelovecharity.org" style="color: #ccc;">info@dovelovecharity.org</a></p>
+  <!-- ── WHO WE ARE ── -->
+  <section id="who">
+    <div class="two-col">
+      <div class="col-img">
+        <img src="https://i.postimg.cc/Prx79Rgh/Screenshot-20250503-223744-Gallery.jpg" alt="Children at Dove Love Charity" loading="lazy">
+        <div class="img-badge">
+          <strong>Est. 2020</strong>
+          East Africa
+        </div>
+      </div>
+      <div class="col-text">
+        <span class="section-eyebrow">Who We Are</span>
+        <h2 class="section-title">Born From Personal Pain.<br>Built on Faith.</h2>
+        <p class="section-body">
+          Dove Love Charity Organization is a grassroots nonprofit based in Uganda, East Africa. We exist to ensure that no child is left without love, education, or a safe place to rest.
+        </p>
+        <blockquote>"We don't just provide for children. We give them back their dignity and their future."</blockquote>
+        <p class="section-body">
+          We care for over <strong>50 children</strong> at our sanctuary, have supported more than <strong>200 others</strong> with school fees and materials, and provide monthly food packages to over <strong>30 elderly</strong> people in our community.
+        </p>
+        <a href="aboutus.html" class="text-link" style="margin-top:20px; display:inline-flex;">Read our full story &#8594;</a>
+      </div>
     </div>
+  </section>
 
-    <!-- Social Media -->
-    <div style="flex: 1; min-width: 250px;">
-      <h3>Connect with us</h3>
-      <a href="https://www.facebook.com/profile.php?id=61575971335681" target="_blank" style="margin-right: 10px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" width="30">
-      </a>
-      <a href="https://www.linkedin.com/company/dove-love-charity-org/" target="_blank" style="margin-right: 10px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="30">
-      </a>
-      <a href="https://www.instagram.com/andrew_dove_love?igsh=emV0OWFiZmxueWVj" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30">
-      </a>
+  <!-- ── PROGRAMS ── -->
+  <section id="programs">
+    <div class="section-header">
+      <span class="section-eyebrow">What We Do</span>
+      <h2 class="section-title">Caring for the Whole Child</h2>
+      <p class="section-body">From daily meals to spiritual mentorship, our programs nurture every part of a child's life.</p>
     </div>
+    <div class="programs-grid">
+      <div class="program-card">
+        <span class="p-icon">&#127869;</span>
+        <h3>Feeding Program</h3>
+        <p>Two meals a day. Sometimes three. Always with love. We also provide monthly food packages to elderly members of our community.</p>
+      </div>
+      <div class="program-card">
+        <span class="p-icon">&#128218;</span>
+        <h3>Education Support</h3>
+        <p>From nursery to Primary 5 — we run classes in our own structures and pay school fees for children attending other schools.</p>
+      </div>
+      <div class="program-card">
+        <span class="p-icon">&#128591;</span>
+        <h3>Faith &amp; Mentorship</h3>
+        <p>Growing minds, hearts, and futures rooted in faith. Our children are guided spiritually and emotionally every step of the way.</p>
+      </div>
+      <div class="program-card">
+        <span class="p-icon">&#127968;</span>
+        <h3>Emergency Care</h3>
+        <p>A safe place for children with nowhere else to turn. We offer shelter, clothing, and warmth to those fleeing abuse or abandonment.</p>
+      </div>
+    </div>
+    <div class="programs-cta">
+      <a href="programs.html" class="text-link">See all programs and upcoming projects &#8594;</a>
+    </div>
+  </section>
+
+  <!-- ── IMAGE STRIP ── -->
+  <div id="image-strip" role="img" aria-label="Children at Dove Love Charity Organization, Uganda"></div>
+
+  <!-- ── DONATION ── -->
+  <section id="donate">
+    <div class="section-header">
+      <span class="section-eyebrow">Give Today</span>
+      <h2 class="section-title">Be the Reason a Child<br>Eats Today</h2>
+      <p class="section-body">Your gift no matter the size changes a real life in Uganda.</p>
+    </div>
+    <div class="donate-grid">
+      <!-- Sponsor card — logo blue -->
+      <div class="donate-card sponsor">
+        <div class="amount">$30</div>
+        <div class="frequency">per month</div>
+        <h3>Sponsor a Child</h3>
+        <p>Provide one child with nutritious meals and access to education for an entire month. You will receive updates on the child your gift supports.</p>
+        <a href="https://www.mchanga.africa/fundraiser/84527" target="_blank" rel="noopener noreferrer" class="btn-donate btn-donate-blue">Sponsor Now</a>
+      </div>
+      <!-- Featured card — amber -->
+      <div class="donate-card featured">
+        <div class="amount">$100</div>
+        <div class="frequency">one-time gift</div>
+        <h3>Feed All 50 Children</h3>
+        <p>Feed every child at Dove Love for one full week — rice, beans, porridge, and sugar. A week of full bellies and bright minds.</p>
+        <a href="https://www.mchanga.africa/fundraiser/84527" target="_blank" rel="noopener noreferrer" class="btn-donate btn-donate-amber">Give This Gift</a>
+      </div>
+      <!-- Champion card — amber -->
+      <div class="donate-card">
+        <div class="amount">$500</div>
+        <div class="frequency">one-time gift</div>
+        <h3>Full Month Champion</h3>
+        <p>Cover a complete month of nutritious meals for all 50 children. The most powerful single gift and the most life changing.</p>
+        <a href="https://www.mchanga.africa/fundraiser/84527" target="_blank" rel="noopener noreferrer" class="btn-donate btn-donate-amber">Become a Champion</a>
+      </div>
+    </div>
+    <p class="donate-alt">Prefer a different amount? <a href="https://www.mchanga.africa/fundraiser/84527" target="_blank" rel="noopener noreferrer">Give what you can &#8594;</a></p>
+    <div class="trust-signals">
+      <div class="trust-item"><span class="check">&#10003;</span> Registered nonprofit in Uganda</div>
+      <div class="trust-item"><span class="check">&#10003;</span> Donations go directly to programs</div>
+      <div class="trust-item"><span class="check">&#10003;</span> Regular impact updates to donors</div>
+      <div class="trust-item"><span class="check">&#10003;</span> Full transparency on all spending</div>
+    </div>
+  </section>
+
+  <!-- ── GALLERY ── -->
+  <section id="gallery">
+    <div class="section-header">
+      <span class="section-eyebrow">Gallery</span>
+      <h2 class="section-title">Life at Dove Love</h2>
+      <p class="section-body">A window into the daily lives of the children we serve. Click any image to view it in full.</p>
+    </div>
+    <div class="gallery-editorial" id="galleryGrid">
+      <!-- Feature: spans all 3 rows on the left -->
+      <img class="gallery-feature"
+           src="https://i.postimg.cc/Prx79Rgh/Screenshot-20250503-223744-Gallery.jpg"
+           alt="Children at Dove Love Charity" loading="lazy">
+      <!-- Rows 1–2, columns 2–3 -->
+      <img src="https://i.postimg.cc/zvL7JFgw/Screenshot-20250901-220756-Gallery.jpg"
+           alt="Community activity" loading="lazy">
+      <img src="https://i.postimg.cc/G3VcMGfM/Screenshot-20250503-224408-Instagram.jpg"
+           alt="Children learning" loading="lazy">
+      <img src="https://i.postimg.cc/DyGQBg3s/Screenshot-20250901-223722-Gallery.jpg"
+           alt="Daily life at Dove Love" loading="lazy">
+      <img src="https://i.postimg.cc/Y28VXHyb/Screenshot-20250503-223326-Gallery.jpg"
+           alt="Meals being served" loading="lazy">
+      <!-- Row 3, columns 2–3 -->
+      <img src="https://i.postimg.cc/NfSXYKzF/IMG-20250503-162513-413.jpg"
+           alt="Children smiling" loading="lazy">
+      <img src="https://i.postimg.cc/2yH4YVK3/Screenshot-20250419-015306-Linked-In.jpg"
+           alt="Andrew Odoi, Director" loading="lazy">
+      <img src="https://i.postimg.cc/zB7dPCpV/Screenshot-20250503-222842-Gallery.jpg"
+           alt="Community gathering" loading="lazy">
+      <img src="https://i.postimg.cc/Y2Zf6PZM/Screenshot-20250901-223747-Gallery.jpg"
+           alt="Children at sanctuary" loading="lazy">
+    </div>
+    <div class="gallery-footer">
+      <a href="programs.html" class="text-link">View more on our Programs page &#8594;</a>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <span id="lightbox-close" onclick="closeLightbox()" role="button" tabindex="0" aria-label="Close">&times;</span>
+    <img id="lightbox-img" src="" alt="Full size image">
   </div>
 
-  <!-- Registration Info & Copyright -->
-  <div style="margin-top: 30px; text-align: center; font-size: 0.9rem; color: #aaa;">
-    Registered Non Profit Organization  in Uganda  Registration No: <strong>:80034798673897</strong><br>
-    &copy; 2025 Dove Love Charity Organization. All rights reserved.
-  </div>
-</footer>
+  <!-- ── TESTIMONIAL ── -->
+  <section id="testimonial">
+    <div class="testimonial-inner">
+      <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+      <blockquote>
+        Seeing the joy on these children's faces knowing that someone halfway around the world cares, that is what drives me to keep spreading the word about Dove Love. This is real, life changing work.
+      </blockquote>
+      <cite>
+        Mrs. Kirstie Wimbles
+        <span>Europe Ambassador, Dove Love Charity Organization</span>
+      </cite>
+    </div>
+  </section>
+
+  <!-- ── EMAIL STRIP ── -->
+  <section id="email-strip">
+    <h3>Stay Close to the Children</h3>
+    <p>Get updates, stories, and impact reports from Dove Love straight to your inbox.</p>
+
+    <!-- Brevo form — AJAX submit, no redirect, inline success -->
+    <div style="text-align:center; background-color:transparent;">
+      <div id="sib-form-container" class="sib-form-container">
+        <div id="sib-container" class="sib-container--large sib-container--vertical"
+             style="text-align:left; background-color:rgba(255,255,255,1); max-width:480px; border-radius:12px; border:none; margin:0 auto;">
+
+          <!-- Success state — hidden until submit succeeds -->
+          <div id="sib-success" style="display:none; text-align:center; padding:32px 24px;">
+            <svg viewBox="0 0 52 52" style="width:52px;height:52px;margin:0 auto 16px;display:block;">
+              <circle cx="26" cy="26" r="25" fill="none" stroke="#0d5c8a" stroke-width="2"/>
+              <path fill="none" stroke="#0d5c8a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M14 27l8 8 16-16"/>
+            </svg>
+            <p style="font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:600;color:#17202a;margin-bottom:6px;">You're on the list!</p>
+            <p style="font-family:'Inter',sans-serif;font-size:0.88rem;color:#475a6b;line-height:1.6;">Thank you for joining. We'll send you updates from Uganda.</p>
+          </div>
+
+          <!-- Form — hidden after success -->
+          <form id="sib-form" style="padding:8px 0;">
+            <div style="padding:8px 0 4px;">
+              <label class="entry__label"
+                     style="font-family:'Inter',sans-serif;font-weight:600;font-size:0.82rem;text-align:left;color:#17202a;letter-spacing:0.01em;display:block;margin-bottom:8px;"
+                     for="EMAIL">
+                Enter your email to stay connected *
+              </label>
+              <div class="entry__field">
+                <input class="input" type="email" id="EMAIL" name="EMAIL"
+                       autocomplete="email" placeholder="your@email.com"
+                       data-required="true" required
+                       style="width:100%;font-family:'Inter',sans-serif;font-size:0.92rem;padding:11px 14px;border:2px solid #d0dae4;border-radius:8px;color:#17202a;outline:none;transition:border-color 0.2s;box-sizing:border-box;"
+                       onfocus="this.style.borderColor='#0d5c8a'" onblur="this.style.borderColor='#d0dae4'"/>
+              </div>
+              <label id="sib-error-msg" class="entry__error entry__error--primary"
+                     style="display:none;font-size:0.8rem;font-family:'Inter',sans-serif;color:#661d1d;background-color:#ffeded;border-radius:6px;padding:6px 10px;margin-top:6px;border:1px solid #ff4949;">
+              </label>
+              <p style="font-size:0.72rem;font-family:'Inter',sans-serif;color:#8390A4;margin-top:6px;">
+                e.g. abc@example.com
+              </p>
+            </div>
+            <div style="padding:8px 0 4px;">
+              <button id="sib-submit-btn" type="button" onclick="submitBrevoForm()"
+                      style="font-family:'Inter',sans-serif;font-size:0.92rem;font-weight:700;color:#ffffff;background-color:#c8621a;border:none;border-radius:8px;padding:13px 28px;width:100%;cursor:pointer;letter-spacing:0.01em;transition:background 0.25s;"
+                      onmouseover="this.style.backgroundColor='#a84e14'" onmouseout="this.style.backgroundColor='#c8621a'">
+                Join Us
+              </button>
+            </div>
+            <input type="text" name="email_address_check" value="" style="display:none;">
+            <input type="hidden" name="locale" value="en">
+            <input type="hidden" name="html_type" value="simple">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <p class="email-note">No spam. Just stories of hope from Uganda.</p>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://i.postimg.cc/tgDzS2HG/dove-love-charity-stamp.png" alt="Dove Love Charity Organization">
+        <p>Bringing love, education, and hope to orphaned and vulnerable children in Uganda, East Africa.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/profile.php?id=61575971335681" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+          </a>
+          <a href="https://www.linkedin.com/company/dove-love-charity-org/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
+          </a>
+          <a href="https://www.instagram.com/dovelovecharityorg?igsh=cWp6NG4wMDF4cmMz&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+          </a>
+          <a href="https://youtube.com/@dove_love_orp?si=XokE9LBqQyN3MQCj" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube">
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="getinvolved.html">Get Involved</a></li>
+          <li><a href="contactus.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="https://www.mchanga.africa/fundraiser/84527" target="_blank" rel="noopener noreferrer">Donate Now</a></li>
+          <li><a href="getinvolved.html">Sponsor a Child</a></li>
+          <li><a href="getinvolved.html">Become an Ambassador</a></li>
+          <li><a href="getinvolved.html">Partner With Us</a></li>
+          <li><a href="mailto:info@dovelovecharity.org">Volunteer</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contact Us</h4>
+        <p>&#128205; Buwoya, Buvuma District, Uganda</p>
+        <p>&#128222; <a href="https://wa.me/256777476617" target="_blank" rel="noopener noreferrer">+256 777 476 617</a></p>
+        <p>&#9993; <a href="mailto:info@dovelovecharity.org">info@dovelovecharity.org</a></p>
+        <p style="margin-top:16px; font-size:0.75rem; color:rgba(255,255,255,0.28); line-height:1.65;">
+          Registered Non-Profit Organization in Uganda<br>
+          Reg. No: 80034798673897
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-poem">"Every child you help is a story still being written."</p>
+      <p class="footer-copy">&copy; 2025 Dove Love Charity Organization. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a href="#top" id="go-up" aria-label="Back to top">&#8593;</a>
 
   <script>
-  const goUpBtn = document.getElementById("goUpBtn");
-  const menuBtn = document.getElementById("menuBtn");
-  const dropdownMenu = document.getElementById("dropdownMenu");
-
-  // Toggle dropdown menu
-  menuBtn.addEventListener("click", () => {
-    dropdownMenu.style.display = dropdownMenu.style.display === "flex" ? "none" : "flex";
-  });
-
-  // Show or hide "Go Up" button on scroll
-  window.addEventListener("scroll", () => {
-    goUpBtn.style.display = window.scrollY > 400 ? "block" : "none";
-  });
-
-  // Optional: Hide dropdown when clicking outside
-  window.addEventListener("click", (e) => {
-    if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
-      dropdownMenu.style.display = "none";
-    }
-  });
-  
-  const hero = document.getElementById("hero");
-  const images = [
-    "https://i.postimg.cc/zvL7JFgw/Screenshot-20250901-220756-Gallery.jpg",
-    "https://i.postimg.cc/cJRKDjRF/20250502-175835.jpg",
-    "https://i.postimg.cc/sxN1QRzg/20250502-180136.jpg",
-    "https://i.postimg.cc/50pXJCkv/20250502-180015.jpg",
-    "https://i.postimg.cc/zv9j3HCs/Screenshot-20250901-221038-Gallery.jpg"
-  ];
-  let currentIndex = 0;
-
-  function changeHeroBackground() {
-    hero.style.backgroundImage = `url('${images[currentIndex]}')`;
-    currentIndex = (currentIndex + 1) % images.length;
-  }
-
-  // Start slideshow
-  changeHeroBackground();
-  setInterval(changeHeroBackground, 5000); // every 2 seconds
-
-  const galleryimages = document.querySelectorAll('.collage-img');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-
-  galleryimages.forEach(img => {
-    img.addEventListener('click', () => {
-      lightbox.style.display = 'flex';
-      lightboxImg.src = img.src;
+    /* ── Navbar scroll ── */
+    const navbar = document.getElementById('navbar');
+    const goUp   = document.getElementById('go-up');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY > 60;
+      navbar.classList.toggle('scrolled', scrolled);
+      goUp.classList.toggle('visible', window.scrollY > 500);
     });
-  });
 
-  function closeLightbox() {
-    lightbox.style.display = 'none';
-  }
-  const currentPage = window.location.pathname.split("/").pop();
-  const links = document.querySelectorAll(".dropdown a");
+    /* ── Mobile menu ── */
+    const hamburger   = document.getElementById('hamburger');
+    const mobileMenu  = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
 
-  links.forEach(link => {
-    const linkPage = link.getAttribute("href");
-    if (linkPage === currentPage || (currentPage === "" && linkPage === "home.html")) {
-      link.classList.add("active");
-    }
-  });
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const menuBtn = document.getElementById('menuBtn');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-
-    let isMenuOpen = false;
-
-    menuBtn.addEventListener('click', function (e) {
+    hamburger.addEventListener('click', e => {
       e.stopPropagation();
-      isMenuOpen = !isMenuOpen;
-      dropdownMenu.style.display = isMenuOpen ? 'block' : 'none';
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
     });
 
-    document.addEventListener('click', function (e) {
-      if (isMenuOpen) {
-        dropdownMenu.style.display = 'none';
-        isMenuOpen = false;
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    mobileClose.addEventListener('click', closeMobileMenu);
+
+    document.addEventListener('click', e => {
+      if (mobileMenu.classList.contains('open') &&
+          !mobileMenu.contains(e.target) &&
+          !hamburger.contains(e.target)) {
+        closeMobileMenu();
       }
     });
 
-    dropdownMenu.addEventListener('click', function (e) {
-      e.stopPropagation(); // Prevents clicks inside the menu from closing it
+    /* ── Hero slideshow ── */
+    const slides = document.querySelectorAll('.hero-slide');
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 5200);
+
+    /* ── Animated counters ── */
+    function animateCounter(el) {
+      if (el.dataset.animated) return;
+      el.dataset.animated = '1';
+      const target = parseInt(el.dataset.target);
+      const duration = 1400;
+      const steps = 60;
+      const step = target / steps;
+      let count = 0;
+      let frame = 0;
+      const timer = setInterval(() => {
+        frame++;
+        count = Math.min(Math.round(step * frame), target);
+        el.textContent = count;
+        if (count >= target) clearInterval(timer);
+      }, duration / steps);
+    }
+
+    function runCounters() {
+      document.querySelectorAll('.stat-number[data-target]').forEach(animateCounter);
+    }
+
+    /* Fire on scroll into view */
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          runCounters();
+          counterObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+
+    const impactBar = document.getElementById('impact-bar');
+    if (impactBar) {
+      counterObserver.observe(impactBar);
+    }
+
+    /* Also fire after short delay in case already scrolled past on load */
+    setTimeout(runCounters, 800);
+
+    /* ── Gallery lightbox ── */
+    document.querySelectorAll('#galleryGrid img').forEach(img => {
+      img.addEventListener('click', () => {
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
     });
-  });
-</script>
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeLightbox();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+        closeMobileMenu();
+      }
+    });
+
+    /* ── Hero donation box ── */
+    const impactMessages = {
+      monthly: {
+        10:  'Provides porridge breakfast for all 50 children for a week',
+        20:  'Covers sugar &amp; basic provisions for the whole month',
+        30:  'Sponsors one child — meals &amp; education for a full month',
+        50:  'Feeds 8 children with full meals for an entire month',
+        100: 'Feeds all 50 children for a full week'
+      },
+      once: {
+        10:  'Provides school materials for one child',
+        20:  'Buys a week of sugar &amp; porridge provisions',
+        30:  'Provides a week of meals for 5 children',
+        50:  'Covers emergency clothing for 3 children',
+        100: 'Feeds all 50 children for one full week'
+      }
+    };
+
+    let currentTab = 'monthly';
+    let currentAmt = 30;
+
+    function updateBox() {
+      const ctaBtn = document.getElementById('hdb-cta-btn');
+      const impactText = document.getElementById('hdb-impact-text');
+      const freqLabel = document.getElementById('hdb-freq-label');
+      const suffix = currentTab === 'monthly' ? '/month' : '';
+      const tabLabel = currentTab === 'monthly' ? 'per month' : 'one-time';
+
+      freqLabel.textContent = currentTab === 'monthly'
+        ? 'Select an amount per month'
+        : 'Select a one-time amount';
+
+      ctaBtn.textContent = `Give $${currentAmt} ${tabLabel}`;
+
+      const msg = impactMessages[currentTab][currentAmt]
+        || 'Every dollar goes directly to the children';
+      impactText.innerHTML = msg;
+
+      /* Update unit labels */
+      ['10','20','30','50','100'].forEach(amt => {
+        const unit = document.getElementById('unit-' + amt);
+        if (unit) unit.textContent = currentTab === 'monthly' ? 'USD/mo' : 'USD';
+      });
+    }
+
+    function switchTab(tab, btn) {
+      currentTab = tab;
+      document.querySelectorAll('.hdb-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      updateBox();
+    }
+
+    function selectAmt(btn, amt) {
+      currentAmt = amt;
+      document.querySelectorAll('.hdb-amt').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      updateBox();
+    }
+
+    /* Init */
+    updateBox();
+
+    /* ── Brevo AJAX form — no redirect, inline success ── */
+    async function submitBrevoForm() {
+      const emailInput = document.getElementById('EMAIL');
+      const errorMsg   = document.getElementById('sib-error-msg');
+      const submitBtn  = document.getElementById('sib-submit-btn');
+      const form       = document.getElementById('sib-form');
+      const success    = document.getElementById('sib-success');
+
+      const email = emailInput.value.trim();
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      if (!email || !valid) {
+        errorMsg.textContent = 'Please enter a valid email address.';
+        errorMsg.style.display = 'block';
+        emailInput.style.borderColor = '#ff4949';
+        emailInput.focus();
+        return;
+      }
+
+      errorMsg.style.display = 'none';
+      emailInput.style.borderColor = '#d0dae4';
+      submitBtn.textContent  = 'Sending\u2026';
+      submitBtn.disabled     = true;
+      submitBtn.style.opacity = '0.7';
+
+      try {
+        const formData = new FormData();
+        formData.append('EMAIL',              email);
+        formData.append('email_address_check','');
+        formData.append('locale',             'en');
+        formData.append('html_type',          'simple');
+
+        await fetch(
+          'https://cd943849.sibforms.com/serve/MUIFADCbMmvm1CzGGmzr_T-6v2O6yLRIP85KJ3uL7JUIleyu8ymaEgXVOpQ3lbbh5orzf65lmXOph_XWJmD8YYGWGHd6HGjEATZ-bBXpPtY_dYkNBZS2yg9cSs8RHtWVrCMeYo_tjO1JsgeKFmhxwk026BPPKaDE-oaxT8g0LPO6X1ZXo9u0Ry7qA7EgU-kyPIcO-YhkuW7UGmcmbQ==',
+          { method: 'POST', body: formData, mode: 'no-cors' }
+        );
+        form.style.display    = 'none';
+        success.style.display = 'block';
+      } catch (err) {
+        submitBtn.textContent  = 'Join Us';
+        submitBtn.disabled     = false;
+        submitBtn.style.opacity = '1';
+        errorMsg.textContent   = 'Something went wrong. Please try again.';
+        errorMsg.style.display = 'block';
+      }
+    }
+  </script>
 </body>
 </html>

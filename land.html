@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Dove Love Charity Organization operates from temporary shelters on rented land. Help us build a permanent, safe home for the children of Uganda, East Africa."/>
+  <title>Building a Place to Call Home — Dove Love Charity Organization</title>
+  <link rel="icon" href="https://i.postimg.cc/tgDzS2HG/dove-love-charity-stamp.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--blue:#0d5c8a;--blue-mid:#1a7ab8;--blue-light:#e6f1f8;--amber:#c8621a;--amber-hover:#a84e14;--dark:#0e1c2a;--text:#17202a;--subtext:#475a6b;--bg-soft:#f7f8fa;--white:#ffffff;--card-shadow:0 4px 28px rgba(0,0,0,0.07);--radius:10px;--radius-pill:50px;}
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;font-weight:400;font-size:16px;color:var(--text);background:#faf9f7;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+    /* NAV */
+    #navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(14,28,42,0.55);backdrop-filter:blur(12px);transition:background 0.4s,box-shadow 0.4s;}
+    #navbar.scrolled{background:var(--white);box-shadow:0 1px 24px rgba(0,0,0,0.09);}
+    .nav-logo img{height:56px;transition:height 0.3s;display:block;}
+    #navbar.scrolled .nav-logo img{height:46px;}
+    .nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+    .nav-links a{text-decoration:none;font-size:0.875rem;font-weight:500;color:rgba(255,255,255,0.9);position:relative;letter-spacing:0.01em;transition:color 0.25s;}
+    #navbar.scrolled .nav-links a{color:var(--text);}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--blue-mid);transition:width 0.25s;}
+    .nav-links a:hover::after{width:100%;}
+    .nav-donate-btn{background:var(--amber)!important;color:var(--white)!important;padding:9px 20px;border-radius:var(--radius-pill);font-weight:600!important;font-size:0.85rem!important;transition:background 0.25s!important;}
+    .nav-donate-btn:hover{background:var(--amber-hover)!important;}
+    .nav-donate-btn::after{display:none!important;}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;}
+    .hamburger span{display:block;width:24px;height:2px;background:rgba(255,255,255,0.9);border-radius:2px;transition:background 0.3s;}
+    #navbar.scrolled .hamburger span{background:var(--text);}
+    .mobile-menu{display:none;position:fixed;inset:0;background:var(--white);z-index:998;flex-direction:column;padding:88px 32px 40px;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{padding:16px 0;text-decoration:none;color:var(--text);font-weight:500;font-size:1.1rem;border-bottom:1px solid #f0f0f0;}
+    .mobile-menu .donate-mobile{margin-top:28px;background:var(--amber);color:var(--white)!important;text-align:center;border-radius:var(--radius-pill);padding:16px;font-size:1rem;font-weight:600;border:none;}
+    .mobile-close{position:absolute;top:20px;right:24px;font-size:1.8rem;background:none;border:none;cursor:pointer;color:var(--text);}
+
+    /* HERO */
+    .story-hero{position:relative;height:90vh;min-height:560px;display:flex;align-items:flex-end;background-size:cover;background-position:center;overflow:hidden;}
+    .story-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,18,32,0.92) 0%,rgba(8,18,32,0.55) 40%,rgba(8,18,32,0.08) 100%);}
+    .story-hero-content{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:0 48px 72px;width:100%;}
+    .story-back{display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,0.65);font-size:0.82rem;font-weight:500;text-decoration:none;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:20px;transition:color 0.2s;}
+    .story-back:hover{color:var(--white);}
+    .story-hero-tag{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#f0c060;margin-bottom:14px;background:rgba(240,192,96,0.14);padding:5px 12px;border-radius:4px;border:1px solid rgba(240,192,96,0.3);}
+    .story-hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,4.5vw,3.4rem);font-weight:400;color:var(--white);line-height:1.15;letter-spacing:-0.01em;max-width:720px;}
+    .story-hero-meta{margin-top:20px;font-size:0.82rem;color:rgba(255,255,255,0.55);letter-spacing:0.04em;text-transform:uppercase;}
+
+    /* BODY */
+    .story-body{max-width:1160px;margin:0 auto;padding:72px 48px;display:grid;grid-template-columns:1fr 340px;gap:64px;align-items:start;}
+    .story-text h2{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:500;color:#1a2332;margin-bottom:20px;letter-spacing:-0.01em;line-height:1.25;}
+    .story-text p{font-size:1.05rem;line-height:1.85;color:var(--subtext);margin-bottom:1.4em;}
+    .story-text p:last-child{margin-bottom:0;}
+    .story-text strong{color:var(--text);font-weight:600;}
+
+    /* VISION CARDS */
+    .vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:36px 0;}
+    .vision-card{background:var(--bg-soft);border-radius:var(--radius);padding:22px 20px;border-left:3px solid var(--blue);}
+    .vision-card h4{font-size:0.88rem;font-weight:700;color:var(--blue);margin-bottom:8px;letter-spacing:0.02em;text-transform:uppercase;}
+    .vision-card p{font-size:0.88rem;color:var(--subtext);line-height:1.65;margin:0;}
+
+    /* GALLERY */
+    .story-gallery{margin-top:52px;}
+    .story-gallery h2{font-size:1.1rem;font-weight:600;color:#1a2332;margin-bottom:20px;}
+    .gallery-mosaic{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+    .gallery-mosaic img{width:100%;height:210px;object-fit:cover;border-radius:8px;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;}
+    .gallery-mosaic img:first-child{grid-column:1/3;height:270px;}
+    .gallery-mosaic img:hover{transform:scale(1.02);box-shadow:0 8px 28px rgba(0,0,0,0.15);}
+
+    /* LIGHTBOX */
+    .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;justify-content:center;align-items:center;padding:20px;}
+    .lightbox.open{display:flex;}
+    .lightbox img{max-width:92%;max-height:90vh;border-radius:8px;}
+    .lightbox-close{position:absolute;top:20px;right:28px;color:rgba(255,255,255,0.7);font-size:2rem;cursor:pointer;background:none;border:none;line-height:1;}
+    .lightbox-close:hover{color:var(--white);}
+
+    /* URGENCY */
+    .urgency-inline{background:#f3f8ff;border-radius:8px;padding:20px 24px;margin-top:40px;border-left:4px solid var(--blue);}
+    .urgency-inline p{font-size:0.95rem;font-weight:600;color:#0a3d5e;line-height:1.6;}
+
+    /* DONATE SIDEBAR */
+    .donate-sidebar{position:sticky;top:100px;}
+    .donate-card{background:var(--white);border-radius:12px;box-shadow:0 4px 32px rgba(0,0,0,0.1);overflow:hidden;}
+    .donate-card-header{background:var(--blue);padding:24px 24px 20px;color:var(--white);}
+    .donate-card-header h3{font-size:1.05rem;font-weight:600;margin-bottom:4px;}
+    .donate-card-header p{font-size:0.82rem;opacity:0.75;line-height:1.5;}
+    .donate-card-body{padding:24px;}
+    .donate-tier{border:2px solid #e8edf2;border-radius:8px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:border-color 0.2s,background 0.2s;}
+    .donate-tier:hover{border-color:var(--blue-mid);}
+    .donate-tier.selected{border-color:var(--blue);background:var(--blue-light);}
+    .donate-tier-amount{font-size:1.3rem;font-weight:700;color:var(--blue);letter-spacing:-0.02em;}
+    .donate-tier-label{font-size:0.82rem;color:var(--subtext);margin-top:2px;line-height:1.4;}
+    .donate-main-btn{display:block;width:100%;background:var(--amber);color:var(--white);border:none;border-radius:8px;padding:15px;font-family:'Inter',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;margin-top:16px;transition:background 0.25s,transform 0.2s;}
+    .donate-main-btn:hover{background:var(--amber-hover);transform:translateY(-1px);}
+    .trust-list{margin-top:18px;list-style:none;display:flex;flex-direction:column;gap:10px;}
+    .trust-list li{display:flex;align-items:flex-start;gap:8px;font-size:0.8rem;color:var(--subtext);line-height:1.5;}
+    .trust-list li::before{content:'✓';background:var(--blue);color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;flex-shrink:0;margin-top:1px;}
+
+    /* FOOTER */
+    .story-footer-back{text-align:center;padding:52px 48px;background:var(--bg-soft);}
+    .story-footer-back a{display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-weight:600;font-size:0.9rem;text-decoration:none;transition:gap 0.2s;}
+    .story-footer-back a:hover{gap:12px;}
+    footer{background:var(--dark);color:var(--white);padding:48px 48px 28px;border-top:4px solid var(--blue);}
+    .footer-bottom-row{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+    .footer-bottom-row p{font-size:0.82rem;color:rgba(255,255,255,0.35);}
+    .footer-bottom-row a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.82rem;}
+    .footer-bottom-row a:hover{color:var(--white);}
+    #go-up{position:fixed;bottom:28px;right:28px;background:var(--blue);color:var(--white);width:44px;height:44px;border-radius:50%;display:none;align-items:center;justify-content:center;text-decoration:none;font-size:1.1rem;box-shadow:0 4px 16px rgba(13,92,138,0.4);z-index:998;transition:background 0.25s,transform 0.2s;}
+    #go-up:hover{background:var(--blue-mid);transform:translateY(-2px);}
+    #go-up.visible{display:flex;}
+
+    @media(max-width:900px){
+      .story-body{grid-template-columns:1fr;gap:48px;}
+      .donate-sidebar{position:static;}
+      #navbar{padding:14px 20px;}
+      .story-hero-content{padding:0 24px 56px;}
+      .vision-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:768px){
+      .nav-links{display:none;}.hamburger{display:flex;}
+      .story-body{padding:52px 24px;}
+      .gallery-mosaic{grid-template-columns:1fr 1fr;}
+      .gallery-mosaic img:first-child{grid-column:1/3;height:220px;}
+      footer{padding:40px 24px 24px;}
+    }
+  </style>
+</head>
+<body id="top">
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo"><img src="https://i.postimg.cc/tgDzS2HG/dove-love-charity-stamp.png" alt="Dove Love Charity Organization"></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="getinvolved.html">Get Involved</a></li>
+      <li><a href="contactus.html">Contact</a></li>
+      <li><a href="https://www.mchanga.africa/fundraiser/84527" target="_blank" rel="noopener noreferrer" class="nav-donate-btn">Donate Now</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose">&times;</button>
+    <a href="index.html">Home</a><a href="aboutus.html">About Us</a><a href="programs.html">Programs</a>
+    <a href="getinvolved.html">Get Involved</a><a href="contactus.html">Contact</a>
+    <a href="https://www.mchanga.africa/fundraiser/103960" target="_blank" rel="noopener noreferrer" class="donate-mobile">Donate Now</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="story-hero" style="background-image:url('https://i.postimg.cc/Xqz37RGr/buildning_header.jpg')">
+    <div class="story-hero-content">
+      <a href="index.html#stories" class="story-back">&#8592; Back to Stories</a>
+      <span class="story-hero-tag">Land &amp; Shelter &middot; Uganda</span>
+      <h1>Building a Permanent Place to Call Home</h1>
+      <p class="story-hero-meta">Dove Love Charity Organization &middot; March 2026</p>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="story-body">
+
+    <!-- LEFT: Story text + gallery -->
+    <div class="story-text">
+
+      <h2>A Foundation Built on Borrowed Ground</h2>
+      <p>Every morning at Dove Love, over 50 children wake up in structures that were never meant to be permanent. The land beneath their feet does not belong to us. The buildings that shelter them were put together with iron sheets and wooden poles as a starting point not a final answer.</p>
+      <p>For years, Dove Love Charity Organization has operated from <strong>temporary shelters on rented land</strong> in Uganda. While these structures have served the children with love and care, they were never a long-term solution. Iron sheet roofs trap heat in the day and offer little protection in heavy rain. Wooden pole structures weaken over time. Rented land means no security the ground our children call home could be taken away.</p>
+      <p>The children who gather under the shade of a mango tree for lessons, who eat their meals on the open dirt, who sleep in cramped rooms they deserve better. Every child deserves to know that the ground beneath them is theirs, and the roof above them will not fail.</p>
+
+      <div class="vision-grid">
+        <div class="vision-card">
+          <h4>Permanent Land</h4>
+          <p>Securing owned land in Uganda means stability a safe foundation that no one can take away from these children.</p>
+        </div>
+        <div class="vision-card">
+          <h4>Proper Buildings</h4>
+          <p>Permanent classrooms and dormitories built with solid materials cool in heat, safe in storms, and dignified for every child.</p>
+        </div>
+        <div class="vision-card">
+          <h4>Agricultural Support</h4>
+          <p>Land also means farming. Growing food on our own land would reduce dependence on donations and build lasting self-reliance.</p>
+        </div>
+        <div class="vision-card">
+          <h4>A Safe Environment</h4>
+          <p>Stability of place creates stability of mind. Children who feel secure at home are able to learn, grow, and thrive.</p>
+        </div>
+      </div>
+
+      <p>Andrew and the Dove Love team are actively working toward acquiring land and beginning construction. But this vision requires resources that the organization does not yet have. <strong>Your support makes it possible to move from temporary to permanent.</strong></p>
+
+      <div class="urgency-inline">
+        <p>"These children need a foundation that lasts not just for today, but for every child who will come after them."</p>
+      </div>
+
+      <!-- Gallery -->
+      <div class="story-gallery">
+        <h2>Life at Our Current Compound</h2>
+        <div class="gallery-mosaic" id="landGallery">
+          <img src="https://i.postimg.cc/Xqz37RGr/buildning_header.jpg" alt="The Dove Love compound" loading="lazy">
+          <img src="https://i.postimg.cc/4ySZND7n/dove_love_compound.jpg" alt="Children at Dove Love compound" loading="lazy">
+          <img src="https://i.postimg.cc/C5QYL3Bg/classroom.jpg" alt="Children learning at Dove Love" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Donation sidebar -->
+    <aside class="donate-sidebar">
+      <div class="donate-card">
+        <div class="donate-card-header">
+          <h3>Help Build Their Home</h3>
+          <p>Every contribution brings us closer to permanent land and safe buildings for the children.</p>
+        </div>
+        <div class="donate-card-body">
+          <div class="donate-tier selected" onclick="selectTier(this)">
+            <div class="donate-tier-amount">$25</div>
+            <div class="donate-tier-label">Contributes to materials for the building project</div>
+          </div>
+          <div class="donate-tier" onclick="selectTier(this)">
+            <div class="donate-tier-amount">$75</div>
+            <div class="donate-tier-label">Helps fund land survey and planning costs</div>
+          </div>
+          <div class="donate-tier" onclick="selectTier(this)">
+            <div class="donate-tier-amount">$200</div>
+            <div class="donate-tier-label">Major contribution toward permanent structure construction</div>
+          </div>
+          <a href="https://www.mchanga.africa/fundraiser/84527" target="_blank" rel="noopener noreferrer" class="donate-main-btn">
+            Support the Build &#8594;
+          </a>
+          <ul class="trust-list">
+            <li>We provide regular updates on the land and building project progress.</li>
+            <li>Every donation is recorded and used transparently for program needs.</li>
+            <li>Dove Love is registered and accountable Reg. No: 80034798673897.</li>
+            <li>Your gift gives children a stable, permanent place to grow and learn.</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLB()">&times;</button>
+    <img id="lb-img" src="" alt="">
+  </div>
+
+  <div class="story-footer-back">
+    <a href="index.html#stories">&#8592; Back to all stories</a>
+  </div>
+
+  <footer>
+    <div class="footer-bottom-row">
+      <p>&copy; 2025 Dove Love Charity Organization. All rights reserved. &middot; Reg. No: 80034798673897</p>
+      <a href="index.html">Back to Homepage</a>
+    </div>
+  </footer>
+  <a href="#top" id="go-up">&#8593;</a>
+
+  <script>
+    const navbar=document.getElementById('navbar'),goUp=document.getElementById('go-up');
+    window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>60);goUp.classList.toggle('visible',window.scrollY>500);});
+    const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobileMenu'),mobileClose=document.getElementById('mobileClose');
+    hamburger.addEventListener('click',e=>{e.stopPropagation();mobileMenu.classList.add('open');document.body.style.overflow='hidden';});
+    function closeMM(){mobileMenu.classList.remove('open');document.body.style.overflow='';}
+    mobileClose.addEventListener('click',closeMM);
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLB();closeMM();}});
+    function selectTier(el){document.querySelectorAll('.donate-tier').forEach(t=>t.classList.remove('selected'));el.classList.add('selected');}
+    document.querySelectorAll('#landGallery img').forEach(img=>{img.addEventListener('click',()=>{document.getElementById('lb-img').src=img.src;document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';});});
+    function closeLB(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+    document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===e.currentTarget)closeLB();});
+  </script>
+</body>
+</html>
